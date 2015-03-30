@@ -1,6 +1,27 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function() {})
+.controller('AppCtrl', function($ionicPlatform, $state) {
+        function exitApp(index) {
+            if (index == 1)
+                navigator.app.exitApp();
+        }
+
+        $ionicPlatform.registerBackButtonAction(function () {
+            if($state.current.name=="app.home" || $state.current.name=="app.about")
+            {
+                navigator.notification.confirm(
+                    '¿Desea salir de la aplicación?',
+                    exitApp,
+                    'Salir',
+                    ['Sí','No']
+                );
+            }
+            else {
+                navigator.app.backHistory();
+            }
+        }, 100);
+
+    })
 
 .controller('HomeCtrl', function($scope) {
   $scope.playlists = [

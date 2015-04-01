@@ -21,3 +21,7 @@
     box-shadow: 0px 0px;
     opacity: 0.7;
 }
+
+ion-spinner svg{
+    stroke: rgba(56,126,245,0.6);
+}

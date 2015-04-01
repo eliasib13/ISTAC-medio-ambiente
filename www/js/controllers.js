@@ -1,6 +1,8 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($ionicPlatform, $state) {
+    .controller('AppCtrl', function($ionicPlatform, $scope, $state) {
+        $scope.loadingTemplate = '<ion-spinner icon="lines"></ion-spinner>';
+
         function exitApp(index) {
             if (index == 1)
                 navigator.app.exitApp();
@@ -21,24 +23,36 @@ angular.module('starter.controllers', [])
             }
         }, 100);
 
+        $scope.categorias = [];
     })
 
-.controller('HomeCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
-})
+    .controller('HomeCtrl', function($scope, $ionicLoading) {
+        $ionicLoading.show({
+            template: $scope.loadingTemplate
+        });
 
-.controller('CategoriaCtrl', function($stateParams) {
-})
+        $scope.$on('$ionicView.loaded', function() {
+            $.ajax({
+                type: "GET",
+                url: "http://www.gobiernodecanarias.org/istac/indicators/api/indicators/v1.0/indicators?api_key=special-key",
+                dataType: "jsonp",
+                jsonp: "_callback",
+                success: function(data) {
+                    for (var i = 0; i < data.items.length; i++)
+                        $scope.categorias.push({id: i, name: data.items[i].id, title: data.items[i].title.es});
 
-.controller('AboutCtrl', function($cordovaInAppBrowser) {
-    $('.logo').click(function(e){
-        $cordovaInAppBrowser.open($(e.target).attr('href'), '_system');
-    });
-})
+                    $ionicLoading.hide();
+                }
+            });
+        });
+    })
+
+    .controller('CategoriaCtrl', function($stateParams, $scope) {
+        $scope.categoria = $scope.categorias[$stateParams.categoriaId];
+    })
+
+    .controller('AboutCtrl', function($cordovaInAppBrowser) {
+        $('.logo').click(function(e){
+            $cordovaInAppBrowser.open($(e.target).attr('href'), '_system');
+        });
+    })

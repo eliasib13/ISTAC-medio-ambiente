@@ -1,5 +1,14 @@
 <ion-view view-title="{{categoria.title}}">
   <ion-content>
-    <h1>{{categoria.title}}</h1>
+    <ion-list>
+      <ion-item class="item item-input item-stacked-label item-select">
+        <span class="input-label">Dimensiones geográficas</span>
+        <select ng-model="geoDimVal" ng-options="geoDim.title for geoDim in geoDimensions" ng-change="updateGeoDim(geoDimVal)"></select>
+      </ion-item>
+      <ion-item class="item item-input item-stacked-label item-select">
+        <span class="input-label">Lugar</span>
+        <select ng-model="lugarVal" ng-options="lugar.title for lugar in lugares" ng-change="updateLugar(lugarVal)"></select>
+      </ion-item>
+    </ion-list>
   </ion-content>
 </ion-view>

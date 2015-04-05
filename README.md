@@ -8,6 +8,7 @@ La forma de representación de los mismos será tanto numérica como gráfica.
 
 ###Tecnologías utilizadas
 * [Ionic Framework][Ionic Framework]
+* [Zepto.js][Zepto.js]
 * [D3.js][D3.js]
 
 ###Forma de uso
@@ -47,6 +48,7 @@ Para más información, consulte la ayuda de Ionic (`$ ionic help`)
 
 [ISTAC]: http://www.gobiernodecanarias.org/istac/
 [Ionic Framework]: http://ionicframework.com/
+[Zepto.js]: http://zeptojs.com/
 [D3.js]: http://d3js.org/
 [Ionic DL]: http://ionicframework.com/getting-started/
 [zip]: https://github.com/eliasib13/ISTAC-medio-ambiente/archive/master.zip

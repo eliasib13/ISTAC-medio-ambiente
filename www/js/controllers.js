@@ -56,6 +56,9 @@ angular.module('starter.controllers', [])
 
         $scope.geoDimensions = [];
         $scope.lugares = [];
+        $scope.granularityTemp = [];
+        $scope.tiempos = [];
+        $scope.medidas = [];
 
         $scope.updateGeoDim = function(val) {
             $scope.geoDimVal = val;
@@ -76,9 +79,27 @@ angular.module('starter.controllers', [])
         };
 
 
-        $scope.updateLugar = function(val) {
-            console.log('update lugar: '+JSON.stringify(val));
-        }
+        $scope.updateLugar = function(val) {};
+
+        $scope.updateGraTmp = function(val) {
+            $scope.graTmp = val;
+            $scope.tiempos = [];
+
+            var index = 0;
+            for (var i = 0; i < $scope.datos_consulta.dimension.TIME.representation.length; i++) {
+                if ($scope.datos_consulta.dimension.TIME.representation[i].granularityCode == $scope.graTmp.code) {
+                    $scope.tiempos.push(
+                        {
+                            id: index,
+                            code: $scope.datos_consulta.dimension.TIME.representation[i].code,
+                            title: $scope.datos_consulta.dimension.TIME.representation[i].title.es
+                        });
+                    index++;
+                }
+            }
+        };
+
+        $scope.updateTiempo = function(val) {};
 
         $scope.$on('$ionicView.afterEnter', function() {
             $.ajax({
@@ -91,6 +112,13 @@ angular.module('starter.controllers', [])
 
                     for (var i = 0; i < $scope.datos_consulta.dimension.GEOGRAPHICAL.granularity.length; i++)
                         $scope.geoDimensions.push({id: i, code: $scope.datos_consulta.dimension.GEOGRAPHICAL.granularity[i].code, title: $scope.datos_consulta.dimension.GEOGRAPHICAL.granularity[i].title.es});
+
+                    for (var i = 0; i < $scope.datos_consulta.dimension.TIME.granularity.length; i++)
+                        $scope.granularityTemp.push({id: i, code: $scope.datos_consulta.dimension.TIME.granularity[i].code, title: $scope.datos_consulta.dimension.TIME.granularity[i].title.es});
+
+                    for (var i = 0; i < $scope.datos_consulta.dimension.MEASURE.representation.length; i++)
+                        $scope.medidas.push({id: i, code: $scope.datos_consulta.dimension.MEASURE.representation[i].code, title: $scope.datos_consulta.dimension.MEASURE.representation[i].title.es, unit: $scope.datos_consulta.dimension.MEASURE.representation[i].quantity.unit.es});
+
                     $ionicLoading.hide();
                 }
             });

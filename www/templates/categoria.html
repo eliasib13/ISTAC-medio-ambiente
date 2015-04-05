@@ -1,13 +1,25 @@
 <ion-view view-title="{{categoria.title}}">
   <ion-content>
     <ion-list>
-      <ion-item class="item item-select">
-        <span>Dimensiones geográficas</span>
+      <ion-item class="item item-input item-select">
+        <div class="input-label">Dimensiones geográficas</div>
         <select ng-model="geoDimVal" ng-options="geoDim.title for geoDim in geoDimensions" ng-change="updateGeoDim(geoDimVal)"></select>
       </ion-item>
-      <ion-item class="item item-select">
-        <span>Lugar</span>
+      <ion-item class="item item-input item-select">
+        <div class="input-label">Lugar</div>
         <select ng-model="lugarVal" ng-options="lugar.title for lugar in lugares" ng-change="updateLugar(lugarVal)"></select>
+      </ion-item>
+      <ion-item class="item item-input item-select">
+        <div class="input-label">Granularidad temporal</div>
+        <select ng-model="graTmp" ng-options="t_granularity.title for t_granularity in granularityTemp" ng-change="updateGraTmp(graTmp)"></select>
+      </ion-item>
+      <ion-item class="item item-input item-select">
+        <div class="input-label">Tiempo</div>
+        <select ng-model="tiempoVal" ng-options="tiempo.title for tiempo in tiempos" ng-change="updateTiempo(tiempoVal)"></select>
+      </ion-item>
+      <ion-item class="item item-input item-select">
+        <div class="input-label">Medidas de los datos</div>
+        <select ng-model="measures" ng-options="medida.title+' ('+medida.unit+')' for medida in medidas" ng-change="updateMeasure(measures)"></select>
       </ion-item>
     </ion-list>
   </ion-content>

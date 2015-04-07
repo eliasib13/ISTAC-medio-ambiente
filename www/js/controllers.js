@@ -55,51 +55,12 @@ angular.module('starter.controllers', [])
         $scope.categoria = $scope.categorias[$stateParams.categoriaId];
 
         $scope.geoDimensions = [];
+        $scope.shownGeoDimensions = {};
         $scope.lugares = [];
         $scope.granularityTemp = [];
+        $scope.shownGranularityTemp = {};
         $scope.tiempos = [];
         $scope.medidas = [];
-
-        $scope.updateGeoDim = function(val) {
-            $scope.geoDimVal = val;
-            $scope.lugares = [];
-
-            var index = 0;
-            for (var i = 0; i < $scope.datos_consulta.dimension.GEOGRAPHICAL.representation.length; i++) {
-                if ($scope.datos_consulta.dimension.GEOGRAPHICAL.representation[i].granularityCode == $scope.geoDimVal.code) {
-                    $scope.lugares.push(
-                        {
-                            id: index,
-                            code: $scope.datos_consulta.dimension.GEOGRAPHICAL.representation[i].code,
-                            title: $scope.datos_consulta.dimension.GEOGRAPHICAL.representation[i].title.es
-                        });
-                    index++;
-                }
-            }
-        };
-
-
-        $scope.updateLugar = function(val) {};
-
-        $scope.updateGraTmp = function(val) {
-            $scope.graTmp = val;
-            $scope.tiempos = [];
-
-            var index = 0;
-            for (var i = 0; i < $scope.datos_consulta.dimension.TIME.representation.length; i++) {
-                if ($scope.datos_consulta.dimension.TIME.representation[i].granularityCode == $scope.graTmp.code) {
-                    $scope.tiempos.push(
-                        {
-                            id: index,
-                            code: $scope.datos_consulta.dimension.TIME.representation[i].code,
-                            title: $scope.datos_consulta.dimension.TIME.representation[i].title.es
-                        });
-                    index++;
-                }
-            }
-        };
-
-        $scope.updateTiempo = function(val) {};
 
         $scope.$on('$ionicView.afterEnter', function() {
             $.ajax({
@@ -110,14 +71,33 @@ angular.module('starter.controllers', [])
                 success: function(data) {
                     $scope.datos_consulta = data;
 
-                    for (var i = 0; i < $scope.datos_consulta.dimension.GEOGRAPHICAL.granularity.length; i++)
-                        $scope.geoDimensions.push({id: i, code: $scope.datos_consulta.dimension.GEOGRAPHICAL.granularity[i].code, title: $scope.datos_consulta.dimension.GEOGRAPHICAL.granularity[i].title.es});
+                    for (var i = 0; i < $scope.datos_consulta.dimension.GEOGRAPHICAL.granularity.length; i++) {
+                        $scope.geoDimensions.push({
+                            id: i,
+                            code: $scope.datos_consulta.dimension.GEOGRAPHICAL.granularity[i].code,
+                            title: $scope.datos_consulta.dimension.GEOGRAPHICAL.granularity[i].title.es
+                        });
+                        $scope.shownGeoDimensions[$scope.geoDimensions[i].code] = false;
+                    };
 
-                    for (var i = 0; i < $scope.datos_consulta.dimension.TIME.granularity.length; i++)
-                        $scope.granularityTemp.push({id: i, code: $scope.datos_consulta.dimension.TIME.granularity[i].code, title: $scope.datos_consulta.dimension.TIME.granularity[i].title.es});
+                    for (var i = 0; i < $scope.datos_consulta.dimension.GEOGRAPHICAL.representation.length; i++)
+                        $scope.lugares.push({id: i, code: $scope.datos_consulta.dimension.GEOGRAPHICAL.representation[i].code, title: $scope.datos_consulta.dimension.GEOGRAPHICAL.representation[i].title.es, granularityCode:$scope.datos_consulta.dimension.GEOGRAPHICAL.representation[i].granularityCode, isSelected: false});
+
+                    for (var i = 0; i < $scope.datos_consulta.dimension.TIME.granularity.length; i++) {
+                        $scope.granularityTemp.push({
+                            id: i,
+                            code: $scope.datos_consulta.dimension.TIME.granularity[i].code,
+                            title: $scope.datos_consulta.dimension.TIME.granularity[i].title.es,
+                            isSelected: true
+                        });
+                        $scope.shownGranularityTemp[$scope.granularityTemp[i].code] = false;
+                    };
+
+                    for (var i = 0; i < $scope.datos_consulta.dimension.TIME.representation.length; i++)
+                        $scope.tiempos.push({id: i, code: $scope.datos_consulta.dimension.TIME.representation[i].code, title: $scope.datos_consulta.dimension.TIME.representation[i].title.es, granularityCode: $scope.datos_consulta.dimension.TIME.representation[i].granularityCode, isSelected: false});
 
                     for (var i = 0; i < $scope.datos_consulta.dimension.MEASURE.representation.length; i++)
-                        $scope.medidas.push({id: i, code: $scope.datos_consulta.dimension.MEASURE.representation[i].code, title: $scope.datos_consulta.dimension.MEASURE.representation[i].title.es, unit: $scope.datos_consulta.dimension.MEASURE.representation[i].quantity.unit.es});
+                        $scope.medidas.push({id: i, code: $scope.datos_consulta.dimension.MEASURE.representation[i].code, title: $scope.datos_consulta.dimension.MEASURE.representation[i].title.es, unit: $scope.datos_consulta.dimension.MEASURE.representation[i].quantity.unit.es, isSelected: false});
 
                     $ionicLoading.hide();
                 }

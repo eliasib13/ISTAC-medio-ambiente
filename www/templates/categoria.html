@@ -1,5 +1,5 @@
 <ion-view view-title="{{categoria.title}}">
-  <ion-content>
+  <ion-content id="categoria-content">
     <ion-list class="list list-inset">
       <ion-item class="item item-divider"><b>Dimesiones geográficas</b></ion-item>
       <ion-toggle ng-repeat="dimension in geoDimensions" ng-model="shownGeoDimensions[dimension.code]" toggle-class="toggle-positive">{{dimension.title}}</ion-toggle>
@@ -20,5 +20,6 @@
       <ion-item class="item item-divider"><b>Medidas</b></ion-item>
       <ion-toggle ng-repeat="medida in medidas" ng-model="medida.isSelected" toggle-class="toggle-positive">{{medida.title}} ({{medida.unit}})</ion-toggle>
     </ion-list>
+    <button id="consultar" class="button button-block button-positive">Realizar consulta</button>
   </ion-content>
 </ion-view>

@@ -103,6 +103,73 @@ angular.module('starter.controllers', [])
                 }
             });
         });
+
+        $('#consultar').click(function(e){
+            $ionicLoading.show({
+                template: $scope.loadingTemplate
+            });
+
+            var base_url = 'http://www.gobiernodecanarias.org/istac/indicators/api/indicators/v1.0/indicators/GANADO_BOVINO/data?';
+            var representation = 'representation=';
+            var granularity = 'granularity=';
+            var geographical = 'GEOGRAPHICAL';
+            var time = 'TIME';
+            var measure = 'MEASURE';
+            var end_url = '&api_key=special-key';
+
+            var url_consulta = base_url+representation+geographical+'[';
+
+            for(var i = 0; i < $scope.lugares.length; i++) {
+                if ($scope.lugares[i].isSelected)
+                    url_consulta += $scope.lugares[i].code + '|';
+            }
+
+            url_consulta += ']:' + time + '[';
+
+            for(var i = 0; i < $scope.tiempos.length; i++) {
+                if ($scope.tiempos[i].isSelected)
+                    url_consulta += $scope.tiempos[i].code + '|';
+            }
+
+            url_consulta += ']:' + measure + '[';
+
+            for(var i = 0; i < $scope.medidas.length; i++) {
+                if ($scope.medidas[i].isSelected)
+                    url_consulta += $scope.medidas[i].code + '|';
+            }
+
+            url_consulta += ']&' + granularity + geographical + '[';
+
+            for(var i = 0; i < $scope.geoDimensions.length; i++) {
+                if ($scope.geoDimensions[i].isSelected)
+                    url_consulta += $scope.geoDimensions[i].code + '|';
+            }
+
+            url_consulta += ']:' + time + '[';
+
+            for(var i = 0; i < $scope.granularityTemp.length; i++) {
+                if ($scope.granularityTemp[i].isSelected)
+                    url_consulta += $scope.granularityTemp[i].code + '|';
+            }
+
+            url_consulta += ']' + end_url;
+
+            console.log(url_consulta);
+
+            $.ajax({
+                type: "GET",
+                url: url_consulta,
+                dataType: "jsonp",
+                jsonp: "_callback",
+                success: function(data) {
+                    $scope.result_consulta = data;
+
+                    console.log($scope.result_consulta);
+
+                    $ionicLoading.hide();
+                }
+            });
+        });
     })
 
     .controller('AboutCtrl', function($cordovaInAppBrowser) {

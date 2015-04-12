@@ -128,6 +128,10 @@ angular.module('starter.controllers', [])
                 template: $scope.loadingTemplate
             });
 
+            $scope.selectedLugares = [];
+            $scope.selectedTiempos = [];
+            $scope.selectedMeasures = [];
+
             var base_url = 'http://www.gobiernodecanarias.org/istac/indicators/api/indicators/v1.0/indicators/GANADO_BOVINO/data?';
             var representation = 'representation=';
             var granularity = 'granularity=';
@@ -139,23 +143,38 @@ angular.module('starter.controllers', [])
             var url_consulta = base_url+representation+geographical+'[';
 
             for(var i = 0; i < $scope.lugares.length; i++) {
-                if ($scope.lugares[i].isSelected)
+                if ($scope.lugares[i].isSelected) {
                     url_consulta += $scope.lugares[i].code + '|';
+                    $scope.selectedLugares.push($scope.lugares[i]);
+                }
             }
+
+            if ($scope.selectedLugares.length == 0)
+                $scope.selectedLugares = $scope.lugares;
 
             url_consulta += ']:' + time + '[';
 
             for(var i = 0; i < $scope.tiempos.length; i++) {
-                if ($scope.tiempos[i].isSelected)
+                if ($scope.tiempos[i].isSelected) {
                     url_consulta += $scope.tiempos[i].code + '|';
+                    $scope.selectedTiempos.push($scope.tiempos[i]);
+                }
             }
+
+            if ($scope.selectedTiempos.length == 0)
+                $scope.selectedTiempos = $scope.tiempos;
 
             url_consulta += ']:' + measure + '[';
 
             for(var i = 0; i < $scope.medidas.length; i++) {
-                if ($scope.medidas[i].isSelected)
+                if ($scope.medidas[i].isSelected) {
                     url_consulta += $scope.medidas[i].code + '|';
+                    $scope.selectedMeasures.push($scope.medidas[i]);
+                }
             }
+
+            if ($scope.selectedMeasures.length == 0)
+                $scope.selectedMeasures = $scope.medidas;
 
             url_consulta += ']&' + granularity + geographical + '[';
 
@@ -180,6 +199,20 @@ angular.module('starter.controllers', [])
                 jsonp: "_callback",
                 success: function(data) {
                     $scope.result_consulta = data;
+
+                    $scope.getDatoIndex = function (geoCode,timeCode,measureCode) {
+                        var geoIndex, timeIndex, measureIndex;
+                        geoIndex = $scope.result_consulta.dimension.GEOGRAPHICAL.representation.index[geoCode];
+                        timeIndex = $scope.result_consulta.dimension.TIME.representation.index[timeCode];
+                        measureIndex = $scope.result_consulta.dimension.MEASURE.representation.index[measureCode];
+
+                        var geoSize, timeSize, measureSize;
+                        geoSize = $scope.result_consulta.dimension.GEOGRAPHICAL.representation.size;
+                        timeSize = $scope.result_consulta.dimension.TIME.representation.size;
+                        measureSize = $scope.result_consulta.dimension.MEASURE.representation.size;
+
+                        return (geoIndex * timeSize * measureSize) + (timeIndex * measureSize) + measureIndex;
+                    };
 
                     $scope.openModal();
 

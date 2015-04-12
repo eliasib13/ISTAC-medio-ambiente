@@ -3,7 +3,15 @@
         <h1 class="title">Resultados de la consulta</h1>
         <button class="button icon ion-close" ng-click="closeModal()"></button>
     </ion-header-bar>
-    <ion-content>
-        Contenido del modal.
+    <ion-content id="content-modal">
+        <ion-list class="list list-inset" ng-repeat="lugar in selectedLugares">
+            <ion-item class="item item-divider"><b>{{lugar.title}}</b></ion-item>
+            <div class="card" ng-repeat="tiempo in selectedTiempos">
+                <ion-item class="item item-divider">{{tiempo.title}}</ion-item>
+                <span class="dato" ng-repeat="medida in selectedMeasures">
+                    <span class="cursiva">{{medida.title}} ({{medida.unit}}): </span>{{result_consulta.observation[getDatoIndex(lugar.code,tiempo.code,medida.code)]}}<br>
+                </span>
+            </div>
+        </ion-list>
     </ion-content>
 </ion-modal-view>

@@ -47,7 +47,7 @@ angular.module('starter.controllers', [])
         });
     })
 
-    .controller('CategoriaCtrl', function($stateParams, $scope, $ionicLoading) {
+    .controller('CategoriaCtrl', function($stateParams, $scope, $ionicLoading, $ionicModal) {
         $ionicLoading.show({
             template: $scope.loadingTemplate
         });
@@ -104,6 +104,25 @@ angular.module('starter.controllers', [])
             });
         });
 
+        $ionicModal.fromTemplateUrl('templates/result_modal.html', {
+            scope: $scope,
+            animation: 'slide-in-up'
+        }).then(function(modal){
+            $scope.result_modal = modal;
+        });
+
+        $scope.openModal = function() {
+            $scope.result_modal.show();
+        };
+
+        $scope.closeModal = function() {
+            $scope.result_modal.hide();
+        };
+
+        $scope.$on('$destroy', function() {
+            $scope.result_modal.remove();
+        });
+
         $('#consultar').click(function(e){
             $ionicLoading.show({
                 template: $scope.loadingTemplate
@@ -154,8 +173,6 @@ angular.module('starter.controllers', [])
 
             url_consulta += ']' + end_url;
 
-            console.log(url_consulta);
-
             $.ajax({
                 type: "GET",
                 url: url_consulta,
@@ -164,7 +181,7 @@ angular.module('starter.controllers', [])
                 success: function(data) {
                     $scope.result_consulta = data;
 
-                    console.log($scope.result_consulta);
+                    $scope.openModal();
 
                     $ionicLoading.hide();
                 }

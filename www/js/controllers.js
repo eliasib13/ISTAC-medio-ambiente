@@ -31,17 +31,31 @@ angular.module('starter.controllers', [])
             template: $scope.loadingTemplate
         });
 
+        function errorLoadingMarkers() {
+            $ionicLoading.hide();
+            navigator.app.exitApp();
+        }
+
         $scope.$on('$ionicView.loaded', function() {
             $.ajax({
                 type: "GET",
                 url: "http://www.gobiernodecanarias.org/istac/indicators/api/indicators/v1.0/indicators?api_key=special-key",
                 dataType: "jsonp",
                 jsonp: "_callback",
+                timeout: 10000,
                 success: function(data) {
                     for (var i = 0; i < data.items.length; i++)
                         $scope.categorias.push({id: i, code: data.items[i].id, title: data.items[i].title.es});
 
                     $ionicLoading.hide();
+                },
+                error: function (jqXHR, textStatus){
+                    if(textStatus === "timeout") {
+                        navigator.notification.alert('La conexión con la fuente de datos ha expirado. Saliendo de la aplicación...',
+                            errorLoadingMarkers,
+                            'Error',
+                            'Aceptar');
+                    }
                 }
             });
         });
@@ -62,12 +76,18 @@ angular.module('starter.controllers', [])
         $scope.tiempos = [];
         $scope.medidas = [];
 
+        function errorDimensionsTimeout() {
+            $ionicLoading.hide();
+            navigator.app.backHistory();
+        }
+
         $scope.$on('$ionicView.afterEnter', function() {
             $.ajax({
                 type: "GET",
                 url: "http://www.gobiernodecanarias.org/istac/indicators/api/indicators/v1.0/indicators/"+$scope.categoria.code.toUpperCase()+"?api_key=special-key",
                 dataType: "jsonp",
                 jsonp: "_callback",
+                timeout: 10000,
                 success: function(data) {
                     $scope.datos_consulta = data;
 
@@ -100,6 +120,14 @@ angular.module('starter.controllers', [])
                         $scope.medidas.push({id: i, code: $scope.datos_consulta.dimension.MEASURE.representation[i].code, title: $scope.datos_consulta.dimension.MEASURE.representation[i].title.es, unit: $scope.datos_consulta.dimension.MEASURE.representation[i].quantity.unit.es, isSelected: false});
 
                     $ionicLoading.hide();
+                },
+                error: function (jqXHR, textStatus, errorThrown){
+                    if(textStatus == "timeout") {
+                        navigator.notification.alert('La conexión con la fuente de datos ha expirado. Inténtelo de nuevo.',
+                            errorDimensionsTimeout,
+                            'Error',
+                            'Aceptar');
+                    }
                 }
             });
         });
@@ -122,6 +150,11 @@ angular.module('starter.controllers', [])
         $scope.$on('$destroy', function() {
             $scope.result_modal.remove();
         });
+
+        function errorDataTimeout() {
+            $ionicLoading.hide();
+            $scope.closeModal();
+        }
 
         $('#consultar').click(function(e){
             $ionicLoading.show({
@@ -197,6 +230,7 @@ angular.module('starter.controllers', [])
                 url: url_consulta,
                 dataType: "jsonp",
                 jsonp: "_callback",
+                timeout: 15000,
                 success: function(data) {
                     $scope.result_consulta = data;
 
@@ -227,6 +261,14 @@ angular.module('starter.controllers', [])
                     }
 
                     $ionicLoading.hide();
+                },
+                error: function (jqXHR, textStatus, errorThrown){
+                    if(textStatus == "timeout") {
+                        navigator.notification.alert('La conexión con la fuente de datos ha expirado. Inténtelo de nuevo.',
+                            errorDataTimeout,
+                            'Error',
+                            'Aceptar');
+                    }
                 }
             });
         });

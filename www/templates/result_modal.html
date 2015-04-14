@@ -4,14 +4,23 @@
         <button class="button icon ion-close" ng-click="closeModal()"></button>
     </ion-header-bar>
     <ion-content id="content-modal">
-        <ion-list class="list list-inset" ng-repeat="lugar in selectedLugares">
-            <ion-item class="item item-divider"><b>{{lugar.title}}</b></ion-item>
-            <div class="card" ng-repeat="tiempo in selectedTiempos">
-                <ion-item class="item item-divider">{{tiempo.title}}</ion-item>
+        <div class="button-bar">
+            <button class="button button-positive icon" ng-class="{'active ion-ios-list':data_mode==1, 'ion-ios-list-outline':data_mode==2}" ng-click="setDataMode(1)"></button>
+            <button class="button button-positive icon" ng-class="{'active ion-ios-pie':data_mode==2, 'ion-ios-pie-outline':data_mode==1}" ng-click="setDataMode(2)"></button>
+        </div>
+        <div id="raw-data" ng-show="isDataMode(1)">
+            <ion-list class="list list-inset" ng-repeat="lugar in selectedLugares">
+                <ion-item class="item item-divider"><b>{{lugar.title}}</b></ion-item>
+                <div class="card" ng-repeat="tiempo in selectedTiempos">
+                    <ion-item class="item item-divider">{{tiempo.title}}</ion-item>
                 <span class="dato" ng-repeat="medida in selectedMeasures">
                     <span class="cursiva">{{medida.title}} ({{medida.unit}}): </span>{{result_consulta.observation[getDatoIndex(lugar.code,tiempo.code,medida.code)]}}<br>
                 </span>
-            </div>
-        </ion-list>
+                </div>
+            </ion-list>
+        </div>
+        <div id="chart-data" ng-show="isDataMode(2)">
+
+        </div>
     </ion-content>
 </ion-modal-view>

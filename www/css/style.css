@@ -52,3 +52,9 @@ ion-spinner svg{
     margin: 10px;
     line-height: 200%;
 }
+
+.button-bar {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: white;
+}

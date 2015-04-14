@@ -216,6 +216,16 @@ angular.module('starter.controllers', [])
 
                     $scope.openModal();
 
+                    $scope.data_mode = 1;
+
+                    $scope.setDataMode = function (mode) {
+                        $scope.data_mode = mode;
+                    }
+
+                    $scope.isDataMode = function (mode) {
+                        return $scope.data_mode == mode;
+                    }
+
                     $ionicLoading.hide();
                 }
             });

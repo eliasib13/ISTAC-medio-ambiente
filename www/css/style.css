@@ -58,3 +58,8 @@ ion-spinner svg{
     margin-bottom: 10px;
     color: white;
 }
+
+.grafica {
+    width: 100%;
+    height: 400px;
+}

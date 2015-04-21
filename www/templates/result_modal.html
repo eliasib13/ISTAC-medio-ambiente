@@ -20,7 +20,13 @@
             </ion-list>
         </div>
         <div id="chart-data" ng-show="isDataMode(2)">
-
+            <ion-list class="list list-inset" ng-repeat="lugar in selectedLugares">
+                <ion-item class="item item-divider"><b>{{lugar.title}}</b></ion-item>
+                <div class="card" ng-repeat="medida in selectedMeasures">
+                    <ion-item class="item item-divider">{{medida.title}} ({{medida.unit}})</ion-item>
+                    <svg class="grafica" id="graf-{{$index}}-{{$parent.$index}}"></svg>
+                </div>
+            </ion-list>
         </div>
     </ion-content>
 </ion-modal-view>

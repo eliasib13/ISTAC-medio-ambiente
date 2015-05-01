@@ -234,7 +234,7 @@ angular.module('starter.controllers', [])
                 success: function(data) {
                     $scope.result_consulta = data;
 
-                    $scope.getDatoIndex = function (geoCode,timeCode,measureCode) {
+                    $scope.getDatoIndex = function (geoCode, timeCode, measureCode) {
                         var geoIndex, timeIndex, measureIndex;
                         geoIndex = $scope.result_consulta.dimension.GEOGRAPHICAL.representation.index[geoCode];
                         timeIndex = $scope.result_consulta.dimension.TIME.representation.index[timeCode];
@@ -248,29 +248,74 @@ angular.module('starter.controllers', [])
                         return (geoIndex * timeSize * measureSize) + (timeIndex * measureSize) + measureIndex;
                     };
 
-                    $scope.d3Data = [];
-
-                    for (var i = 0; i < $scope.selectedLugares.length; i++) {
-                        $scope.d3Data.push([]);
-                        for (var j = 0; j < $scope.selectedMeasures.length; j++){
-                            var data = [];
-                            for (var k = 0; k < $scope.selectedTiempos.length; k++) {
-                                data.push({
-                                    "dato": $scope.result_consulta.observation[$scope.getDatoIndex($scope.selectedLugares[i].code,$scope.selectedTiempos[k].code,$scope.selectedMeasures[j].code)],
-                                    "fecha": $scope.selectedTiempos[k].code
-                                });
-                            }
-                            data.reverse();
-                            $scope.d3Data[$scope.d3Data.length-1].push(data);
-                        }
-                    }
-
                     $scope.openModal();
+
+                    $scope.drawChart = function(){
+                        for (var i = 0; i < $scope.selectedLugares.length; i++) {
+                            for (var j = 0; j < $scope.selectedMeasures.length; j++) {
+                                var data = [];
+                                for (var k = 0; k < $scope.selectedTiempos.length; k++) {
+                                    data.push({
+                                        "dato": $scope.result_consulta.observation[$scope.getDatoIndex($scope.selectedLugares[i].code, $scope.selectedTiempos[k].code, $scope.selectedMeasures[j].code)],
+                                        "fecha": $scope.selectedTiempos[k].code
+                                    });
+                                }
+                                data.reverse();
+
+                                $('#graf-' + i + '-' + j).empty();
+                                var grafica = d3.select('#graf-' + i + '-' + j),
+                                    WIDTH = $('#graf-' + i + '-' + j).width(),
+                                    HEIGHT = $('#graf-' + i + '-' + j).height(),
+                                    MARGINS = {
+                                        top: 20,
+                                        right: 20,
+                                        bottom: 20,
+                                        left: 50
+                                    },
+                                    xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([parseInt(data[0].fecha),parseInt(data[data.length-1].fecha)]),
+                                    maxDato = -Infinity, minDato = Infinity;
+
+                                for (var x = 0; x < data.length; x++) {
+                                    var dato_int = parseFloat(data[x].dato)
+                                    if (dato_int > maxDato)
+                                        maxDato = dato_int;
+                                    if (dato_int < minDato)
+                                        minDato = dato_int;
+                                }
+                                var yScale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([minDato,maxDato]),
+                                    xAxis = d3.svg.axis().scale(xScale),
+                                    yAxis = d3.svg.axis().scale(yScale).orient("left");
+
+                                grafica.append("svg:g").attr("transform", "translate(0, " + (HEIGHT - MARGINS.bottom) + ")").call(xAxis);
+                                grafica.append("svg:g").attr("transform", "translate(" + (MARGINS.left) + ",0)").call(yAxis);
+
+                                var lineGen = d3.svg.line()
+                                    .x(function (d) {
+                                        return xScale(d.fecha);
+                                    })
+                                    .y(function (d) {
+                                        return yScale(d.dato);
+                                    });
+
+                                grafica.append('svg:path')
+                                    .attr('d', lineGen(data))
+                                    .attr('stroke', 'red')
+                                    .attr('stroke-width', 2)
+                                    .attr('fill', 'none');
+                            }
+                        }
+                    };
+
+                    $(window).resize($scope.drawChart);
 
                     $scope.data_mode = 1;
 
                     $scope.setDataMode = function (mode) {
                         $scope.data_mode = mode;
+
+                        if(mode == 2){ // Mostrar gráficas
+                            setTimeout($scope.drawChart, 0);
+                        }
                     }
 
                     $scope.isDataMode = function (mode) {

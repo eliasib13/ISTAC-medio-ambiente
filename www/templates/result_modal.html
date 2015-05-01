@@ -24,7 +24,7 @@
                 <ion-item class="item item-divider"><b>{{lugar.title}}</b></ion-item>
                 <div class="card" ng-repeat="medida in selectedMeasures">
                     <ion-item class="item item-divider">{{medida.title}} ({{medida.unit}})</ion-item>
-                    <svg class="grafica" id="graf-{{$index}}-{{$parent.$index}}"></svg>
+                    <d3bars data="{{$scope.d3Data[$parent.$index][$index]}}"></d3bars>
                 </div>
             </ion-list>
         </div>

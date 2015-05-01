@@ -248,11 +248,10 @@ angular.module('starter.controllers', [])
                         return (geoIndex * timeSize * measureSize) + (timeIndex * measureSize) + measureIndex;
                     };
 
-                    /************************
-                     * INSERCIÓN DE D3 AQUÍ *
-                     ************************/
+                    $scope.d3Data = [];
 
                     for (var i = 0; i < $scope.selectedLugares.length; i++) {
+                        $scope.d3Data.push([]);
                         for (var j = 0; j < $scope.selectedMeasures.length; j++){
                             var data = [];
                             for (var k = 0; k < $scope.selectedTiempos.length; k++) {
@@ -262,36 +261,7 @@ angular.module('starter.controllers', [])
                                 });
                             }
                             data.reverse();
-
-                            console.log(document.getElementById('graf-'+j+'-'+i));
-                            var graf = d3.select('#graf-'+j+'-'+i),
-                                WIDTH = $('#graf-'+j+'-'+i).width(),
-                                HEIGHT = $('#graf-'+j+'-'+i).height(),
-                                MARGINS = {
-                                    top: 20,
-                                    right: 20,
-                                    bottom: 20,
-                                    left: 50
-                                },
-                                xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([parseInt(data[0].fecha),parseInt(data[data.length-1].fecha)]),
-                                maxDato = -Infinity, minDato = Infinity;
-
-                            for (var x = 0; x < data.length; x++) {
-                                var dato_int = parseFloat(data[x].dato)
-                                if (dato_int > maxDato)
-                                    maxDato = dato_int;
-                                if (dato_int < minDato)
-                                    minDato = dato_int;
-                            }
-
-                            var yScale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([minDato,maxDato]),
-                                xAxis = d3.svg.axis().scale(xScale),
-                                yAxis = d3.svg.axis().scale(yScale).orient('left');
-
-                            graf.append("svg:g").attr("transform", "translate(0," + (HEIGHT - MARGINS.bottom) + ")").call(xAxis);
-                            graf.append("svg:g").attr("transform", "translate(" + (MARGINS.left) + ",0)").call(yAxis);
-
-                            console.log(graf+' , '+WIDTH+' , '+HEIGHT);
+                            $scope.d3Data[$scope.d3Data.length-1].push(data);
                         }
                     }
 

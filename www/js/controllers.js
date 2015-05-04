@@ -283,11 +283,11 @@ angular.module('starter.controllers', [])
                                         minDato = dato_int;
                                 }
                                 var yScale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([minDato,maxDato]),
-                                    xAxis = d3.svg.axis().scale(xScale),
-                                    yAxis = d3.svg.axis().scale(yScale).orient("left");
+                                    xAxis = d3.svg.axis().scale(xScale).tickFormat(d3.format("d")).ticks(6),
+                                    yAxis = d3.svg.axis().scale(yScale).orient("left").tickFormat(d3.format("d")).ticks(6);
 
-                                grafica.append("svg:g").attr("transform", "translate(0, " + (HEIGHT - MARGINS.bottom) + ")").call(xAxis);
-                                grafica.append("svg:g").attr("transform", "translate(" + (MARGINS.left) + ",0)").call(yAxis);
+                                grafica.append("svg:g").attr("class", "axis").attr("transform", "translate(0, " + (HEIGHT - MARGINS.bottom) + ")").call(xAxis);
+                                grafica.append("svg:g").attr("class", "axis").attr("transform", "translate(" + (MARGINS.left) + ",0)").call(yAxis);
 
                                 var lineGen = d3.svg.line()
                                     .x(function (d) {
@@ -299,7 +299,7 @@ angular.module('starter.controllers', [])
 
                                 grafica.append('svg:path')
                                     .attr('d', lineGen(data))
-                                    .attr('stroke', 'red')
+                                    .attr('stroke', '#0c63ee')
                                     .attr('stroke-width', 2)
                                     .attr('fill', 'none');
                             }

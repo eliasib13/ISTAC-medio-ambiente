@@ -1,7 +1,7 @@
-#ISTAC Medio Ambiente
+#VIStac-IMAS-Can
 
 ###Descripción
-ISTAC Medio Ambiente es una aplicación que permite visualizar datos recogidos por el [ISTAC (Instituto Canario de Estadística)][ISTAC], relacionados con el área de medio ambiente.
+VIStac-IMAS-Can es una aplicación que permite visualizar datos recogidos por el [ISTAC (Instituto Canario de Estadística)][ISTAC], relacionados con el área de medio ambiente.
 
 Los datos podrán ser visualizados según los criterios de elección del usuario, pudiendo elegir gracias a diversos filtros qué información desea ver, sobre qué islas y en qué periodo de tiempo.
 La forma de representación de los mismos será tanto numérica como gráfica.
@@ -18,7 +18,7 @@ Puede descargarlo haciendo click [aquí][Ionic DL]. Tenga en cuenta que debe con
 Puede descargar el proyecto como fichero ZIP haceindo click [aquí][zip] o clonando el repositorio mediante `git`:
 
 ```
-$ git clone https://github.com/eliasib13/ISTAC-medio-ambiente.git
+$ git clone https://github.com/eliasib13/VIStac-IMAS-Can.git
 ```
 
 Luego, sitúese en el directorio raíz del proyecto. Desde allí:
@@ -51,4 +51,4 @@ Para más información, consulte la ayuda de Ionic (`$ ionic help`)
 [Zepto.js]: http://zeptojs.com/
 [D3.js]: http://d3js.org/
 [Ionic DL]: http://ionicframework.com/getting-started/
-[zip]: https://github.com/eliasib13/ISTAC-medio-ambiente/archive/master.zip
+[zip]: https://github.com/eliasib13/VIStac-IMAS-Can/archive/master.zip

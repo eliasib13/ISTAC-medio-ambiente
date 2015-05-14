@@ -1,94 +1,123 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="00c46c90-4949-4625-b5f0-0270f70a6fca" name="Default" comment="Corregidas dependencias de nombres, tras el cambio de nombre de la app.">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/doc/ru/index.md" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/doc/ru/index.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.bowerrc" afterPath="$PROJECT_DIR$/.bowerrc" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hooks/after_prepare/010_add_platform_class.js" afterPath="$PROJECT_DIR$/hooks/after_prepare/010_add_platform_class.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/src/ios/CDVInAppBrowser.h" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/src/ios/CDVInAppBrowser.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/src/ios/CDVInAppBrowser.m" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/src/ios/CDVInAppBrowser.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/src/ios/CDVNotification.h" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/src/ios/CDVNotification.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/src/ios/CDVNotification.m" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/src/ios/CDVNotification.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/CONTRIBUTING.md" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/CONTRIBUTING.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/CONTRIBUTING.md" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/CONTRIBUTING.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/src/wp/InAppBrowser.cs" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/src/wp/InAppBrowser.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/src/amazon/InAppBrowser.java" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/src/amazon/InAppBrowser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/src/android/InAppBrowser.java" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/src/android/InAppBrowser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/src/ubuntu/InAppBrowser.qml" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/src/ubuntu/InAppBrowser.qml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/src/android/InAppBrowserDialog.java" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/src/android/InAppBrowserDialog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/src/firefoxos/InAppBrowserProxy.js" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/src/firefoxos/InAppBrowserProxy.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/src/windows/InAppBrowserProxy.js" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/src/windows/InAppBrowserProxy.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/www/windows8/InAppBrowserProxy.js" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/www/windows8/InAppBrowserProxy.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/src/ubuntu/InAppBrowser_escapeScript.js" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/src/ubuntu/InAppBrowser_escapeScript.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/src/amazon/InAppChromeClient.java" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/src/amazon/InAppChromeClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/src/android/InAppChromeClient.java" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/src/android/InAppChromeClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/LICENSE" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/LICENSE" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/LICENSE" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/LICENSE" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/NOTICE" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/NOTICE" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/NOTICE" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/NOTICE" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/src/wp/Notification.cs" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/src/wp/Notification.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/src/android/Notification.java" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/src/android/Notification.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/src/wp/NotificationBox.xaml.cs" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/src/wp/NotificationBox.xaml.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/src/wp/NotificationBox.xaml" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/src/wp/NotificationBox.xaml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/src/windows/NotificationProxy.js" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/src/windows/NotificationProxy.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hooks/README.md" afterPath="$PROJECT_DIR$/hooks/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/README.md" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/README.md" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/src/blackberry10/README.md" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/src/blackberry10/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/RELEASENOTES.md" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/RELEASENOTES.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/RELEASENOTES.md" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/RELEASENOTES.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/android.json" afterPath="$PROJECT_DIR$/plugins/android.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/www/blackberry10/beep.js" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/www/blackberry10/beep.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bower.json" afterPath="$PROJECT_DIR$/bower.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.xml" afterPath="$PROJECT_DIR$/config.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gulpfile.js" afterPath="$PROJECT_DIR$/gulpfile.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/src/ubuntu/inappbrowser.cpp" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/src/ubuntu/inappbrowser.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/src/ubuntu/inappbrowser.h" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/src/ubuntu/inappbrowser.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/www/inappbrowser.js" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/www/inappbrowser.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/src/blackberry10/index.js" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/src/blackberry10/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/doc/index.md" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/doc/index.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/doc/de/index.md" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/doc/de/index.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/doc/es/index.md" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/doc/es/index.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/doc/fr/index.md" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/doc/fr/index.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/doc/it/index.md" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/doc/it/index.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/doc/ja/index.md" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/doc/ja/index.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/doc/ko/index.md" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/doc/ko/index.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/doc/pl/index.md" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/doc/pl/index.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/doc/zh/index.md" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/doc/zh/index.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/doc/index.md" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/doc/index.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/doc/de/index.md" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/doc/de/index.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/doc/es/index.md" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/doc/es/index.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/doc/fr/index.md" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/doc/fr/index.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/doc/it/index.md" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/doc/it/index.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/doc/ja/index.md" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/doc/ja/index.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/doc/ko/index.md" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/doc/ko/index.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/doc/pl/index.md" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/doc/pl/index.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/doc/ru/index.md" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/doc/ru/index.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/doc/zh/index.md" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/doc/zh/index.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/tests/resources/inject.css" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/tests/resources/inject.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/tests/resources/inject.html" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/tests/resources/inject.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/tests/resources/inject.js" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/tests/resources/inject.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scss/ionic.app.scss" afterPath="$PROJECT_DIR$/scss/ionic.app.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ionic.project" afterPath="$PROJECT_DIR$/ionic.project" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/tests/resources/local.html" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/tests/resources/local.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/src/ubuntu/notification.cpp" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/src/ubuntu/notification.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/www/firefoxos/notification.css" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/www/firefoxos/notification.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/src/ubuntu/notification.h" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/src/ubuntu/notification.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/src/firefoxos/notification.js" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/src/firefoxos/notification.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/www/notification.js" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/www/notification.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/www/android/notification.js" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/www/android/notification.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/www/browser/notification.js" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/www/browser/notification.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/src/ubuntu/notification.qml" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/src/ubuntu/notification.qml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/package.json" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/package.json" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/plugin.xml" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/plugin.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/tests/plugin.xml" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/tests/plugin.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/plugin.xml" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/plugin.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/tests/plugin.xml" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/tests/plugin.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/tests/tests.js" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.dialogs/tests/tests.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/tests/tests.js" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/tests/tests.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/tests/resources/video.html" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.inappbrowser/tests/resources/video.html" />
+    <list default="true" id="00c46c90-4949-4625-b5f0-0270f70a6fca" name="Default" comment="Plugins necesarios añadidos.">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/blackberry10/native/device/src/CallKeyboard.o" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/blackberry10/native/simulator/src/CallKeyboard.o" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/blackberry10/native/device/src/Logger.o" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/blackberry10/native/simulator/src/Logger.o" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/blackberry10/native/device/public/json_reader.o" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/blackberry10/native/simulator/public/json_reader.o" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/blackberry10/native/device/public/json_value.o" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/blackberry10/native/simulator/public/json_value.o" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/blackberry10/native/device/public/json_writer.o" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/blackberry10/native/simulator/public/json_writer.o" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/blackberry10/native/device/src/keyboard_js.o" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/blackberry10/native/simulator/src/keyboard_js.o" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/blackberry10/native/device/src/keyboard_ndk.o" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/blackberry10/native/simulator/src/keyboard_ndk.o" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/blackberry10/native/device/libKeyboard.so" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/blackberry10/native/simulator/libKeyboard.so" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/blackberry10/native/device/public/plugin.o" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/blackberry10/native/simulator/public/plugin.o" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/blackberry10/native/device/public/tokenizer.o" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/blackberry10/native/simulator/public/tokenizer.o" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/blackberry10/native/.cproject" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/blackberry10/native/.project" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.device/src/ios/CDVDevice.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.device/src/ios/CDVDevice.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.console/src/ios/CDVLogger.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.console/src/ios/CDVLogger.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.console/CONTRIBUTING.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.device/CONTRIBUTING.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.console/src/wp/DebugConsole.cs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.device/src/wp/Device.cs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.device/src/android/Device.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.device/src/browser/DeviceProxy.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.device/src/firefoxos/DeviceProxy.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.device/src/tizen/DeviceProxy.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.device/src/windows/DeviceProxy.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.device/src/windows8/DeviceProxy.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/ios/IonicKeyboard.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/android/IonicKeyboard.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/ios/IonicKeyboard.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.console/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.device/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/blackberry10/native/src/Logger.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/blackberry10/native/src/Logger.hpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.console/NOTICE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.device/NOTICE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.console/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.device/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.console/RELEASENOTES.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.device/RELEASENOTES.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/ios/UIWebViewExtension.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/ios/UIWebViewExtension.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/blackberry10/native/public/json/autolink.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/blackberry10/native/public/json/config.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.console/www/console-via-logger.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.console/src/ubuntu/console.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.console/src/ubuntu/console.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.device/src/ubuntu/device.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.device/src/ubuntu/device.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.device/src/ubuntu/device.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.device/www/device.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/blackberry10/native/public/json/features.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/fetch.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/blackberry10/native/public/json/forwards.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/blackberry10/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.device/src/blackberry10/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.console/doc/index.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.console/doc/de/index.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.console/doc/es/index.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.console/doc/fr/index.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.console/doc/it/index.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.console/doc/ja/index.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.console/doc/ko/index.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.console/doc/pl/index.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.console/doc/ru/index.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.console/doc/zh/index.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.device/doc/index.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.device/doc/de/index.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.device/doc/es/index.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.device/doc/fr/index.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.device/doc/it/index.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.device/doc/ja/index.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.device/doc/ko/index.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.device/doc/pl/index.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.device/doc/ru/index.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.device/doc/zh/index.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/blackberry10/native/public/json/json.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/blackberry10/native/public/json_batchallocator.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/blackberry10/native/public/json_internalarray.inl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/blackberry10/native/public/json_internalmap.inl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/blackberry10/native/public/json_reader.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/blackberry10/native/public/json_value.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/blackberry10/native/public/json_valueiterator.inl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/blackberry10/native/public/json_writer.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/www/keyboard.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/blackberry10/native/src/keyboard_js.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/blackberry10/native/src/keyboard_js.hpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/blackberry10/native/src/keyboard_ndk.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/blackberry10/native/src/keyboard_ndk.hpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.console/www/logger.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.console/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.device/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/blackberry10/native/public/plugin.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/blackberry10/native/public/plugin.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/plugin.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.console/plugin.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.device/plugin.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.device/tests/plugin.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/blackberry10/native/public/json/reader.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/org.apache.cordova.device/tests/tests.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/blackberry10/native/public/tokenizer.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/blackberry10/native/public/tokenizer.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/blackberry10/native/public/json/value.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/com.ionic.keyboard/src/blackberry10/native/public/json/writer.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ISTAC-medio-ambiente.iws" />
@@ -216,6 +245,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ISTAC-medio-ambiente" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VIStac-IMAS-Can" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
@@ -316,7 +359,13 @@
       <option name="project" value="LOCAL" />
       <updated>1430740185126</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Corregidas dependencias de nombres, tras el cambio de nombre de la app.">
+      <created>1431592453402</created>
+      <option name="number" value="00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1431592453402</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -326,15 +375,15 @@
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18005952" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32872504" sideWeight="0.5033457" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4502447" sideWeight="0.49665427" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.38235295" sideWeight="0.49665427" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20717782" sideWeight="0.49962825" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20588236" sideWeight="0.49962825" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16432433" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -363,7 +412,8 @@
     <MESSAGE value="Ahora las gráficas se muestran sin necesidad de directiva. Hay que revisar el estilo y el reconocimiento de algunos datos no numéricos." />
     <MESSAGE value="Mejorado estilo de las gráficas. Aún puede mejorarse más." />
     <MESSAGE value="Corregidas dependencias de nombres, tras el cambio de nombre de la app." />
-    <option name="LAST_COMMIT_MESSAGE" value="Corregidas dependencias de nombres, tras el cambio de nombre de la app." />
+    <MESSAGE value="Plugins necesarios añadidos." />
+    <option name="LAST_COMMIT_MESSAGE" value="Plugins necesarios añadidos." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -637,6 +687,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.569869">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -697,6 +748,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="25" column="15" selection-start-line="25" selection-start-column="15" selection-end-line="25" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>

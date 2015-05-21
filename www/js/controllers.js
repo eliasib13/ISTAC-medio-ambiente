@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-    .controller('AppCtrl', function($ionicPlatform, $scope, $state) {
+    .controller('AppCtrl', function($ionicPlatform, $ionicLoading, $scope, $state) {
         $scope.loadingTemplate = '<ion-spinner icon="lines"></ion-spinner>';
 
         function exitApp(index) {
@@ -23,7 +23,34 @@ angular.module('starter.controllers', [])
             }
         }, 100);
 
+        function errorLoadingMarkers() {
+            $ionicLoading.hide();
+            navigator.app.exitApp();
+        }
+
+        $ionicLoading.show({
+            template: $scope.loadingTemplate
+        });
+        $.ajax({
+            type: "GET",
+            url: "https://gist.githubusercontent.com/eliasib13/290ff4bcbd64e2e3db1e/raw/e7704b2c3d65b2d957b1c656db1987cfcec4120e/indicadores.json",
+            dataType: "json",
+            timeout: 10000,
+            success: function(data) {
+                $scope.indicadoresPermitidos = data;
+            },
+            error: function (jqXHR, textStatus) {
+                if(textStatus === "timeout") {
+                    navigator.notification.alert('La conexión con la fuente de datos ha expirado. Saliendo de la aplicación...',
+                        errorLoadingMarkers,
+                        'Error',
+                        'Aceptar');
+                }
+            }
+        });
+
         $scope.categorias = [];
+        $scope.indicadores = [];
     })
 
     .controller('HomeCtrl', function($scope, $ionicLoading) {
@@ -39,13 +66,13 @@ angular.module('starter.controllers', [])
         $scope.$on('$ionicView.loaded', function() {
             $.ajax({
                 type: "GET",
-                url: "http://www.gobiernodecanarias.org/istac/indicators/api/indicators/v1.0/indicators?api_key=special-key",
+                url: "http://www.gobiernodecanarias.org/istac/indicators/api/indicators/v1.0/subjects?api_key=special-key",
                 dataType: "jsonp",
                 jsonp: "_callback",
                 timeout: 10000,
                 success: function(data) {
-                    for (var i = 0; i < data.items.length; i++)
-                        $scope.categorias.push({id: i, code: data.items[i].id, title: data.items[i].title.es});
+                    for (var i = 0; i < data.length; i++)
+                        $scope.categorias.push({id: i, code: data[i].code, title: data[i].title.es.substr(4)});
 
                     $ionicLoading.hide();
                 },
@@ -61,12 +88,45 @@ angular.module('starter.controllers', [])
         });
     })
 
-    .controller('CategoriaCtrl', function($stateParams, $scope, $ionicLoading, $ionicModal) {
+    .controller('CategoriaCtrl', function($stateParams, $scope, $ionicLoading) {
         $ionicLoading.show({
             template: $scope.loadingTemplate
         });
 
-        $scope.categoria = $scope.categorias[$stateParams.categoriaId];
+        $scope.categoria = $.grep($scope.categorias, function(cat){ return cat.code === $stateParams['categoriaId']; })[0];
+
+        $scope.$on('$ionicView.afterEnter', function() {
+            $.ajax({
+                type: "GET",
+                url: "http://www.gobiernodecanarias.org/istac/indicators/api/indicators/v1.0/indicators?q=subjectCode+EQ+\"" + $scope.categoria.code + "\"&api_key=special-key",
+                dataType: "jsonp",
+                jsonp: "_callback",
+                timeout: 10000,
+                success: function(data) {
+                    $scope.indicadores = [];
+                    for (var i = 0; i < data.items.length; i++) {
+                        if ($scope.indicadoresPermitidos.indexOf(data.items[i].code) != -1)
+                            $scope.indicadores.push({id: i, code: data.items[i].id, title: data.items[i].title.es});
+                    }
+
+                    $ionicLoading.hide();
+                },
+                error: function (jqXHR, textStatus){
+                    if(textStatus === "timeout") {
+                        navigator.notification.alert('La conexión con la fuente de datos ha expirado. Saliendo de la aplicación...',
+                            errorLoadingMarkers,
+                            'Error',
+                            'Aceptar');
+                    }
+                }
+            });
+        });
+    })
+
+    .controller('IndicadorCtrl', function($stateParams, $scope, $ionicLoading, $ionicModal) {
+        $ionicLoading.show({
+            template: $scope.loadingTemplate
+        });
 
         $scope.geoDimensions = [];
         $scope.shownGeoDimensions = {};
@@ -84,12 +144,13 @@ angular.module('starter.controllers', [])
         $scope.$on('$ionicView.afterEnter', function() {
             $.ajax({
                 type: "GET",
-                url: "http://www.gobiernodecanarias.org/istac/indicators/api/indicators/v1.0/indicators/"+$scope.categoria.code.toUpperCase()+"?api_key=special-key",
+                url: "http://www.gobiernodecanarias.org/istac/indicators/api/indicators/v1.0/indicators/"+$stateParams['indicadorId'].toUpperCase()+"?api_key=special-key",
                 dataType: "jsonp",
                 jsonp: "_callback",
                 timeout: 10000,
                 success: function(data) {
                     $scope.datos_consulta = data;
+                    $scope.indicadorTitle = $scope.datos_consulta.title.es;
 
                     for (var i = 0; i < $scope.datos_consulta.dimension.GEOGRAPHICAL.granularity.length; i++) {
                         $scope.geoDimensions.push({

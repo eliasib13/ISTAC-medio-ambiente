@@ -49,7 +49,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
                         controller: 'CategoriaCtrl'
                     }
                 }
-            });
+            })
+
+            .state('app.indicador', {
+                url: "/home/:categoriaId/:indicadorId",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/indicador.html",
+                        controller: 'IndicadorCtrl'
+                    }
+                }
+            })
 
         $urlRouterProvider.otherwise('/app/home');
     });

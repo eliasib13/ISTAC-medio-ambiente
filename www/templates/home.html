@@ -1,8 +1,8 @@
 <ion-view view-title="Categorías">
   <ion-content>
     <ion-list>
-      <ion-item ng-repeat="categoria in categorias" href="#/app/home/{{categoria.id}}">
-        {{categoria.title}}
+      <ion-item ng-repeat="categoria in categorias | orderBy:'code'" href="#/app/home/{{categoria.code}}">
+        <b>{{categoria.code}}</b>    {{categoria.title}}
       </ion-item>
     </ion-list>
   </ion-content>

@@ -33,7 +33,7 @@ angular.module('starter.controllers', [])
         });
         $.ajax({
             type: "GET",
-            url: "https://gist.githubusercontent.com/eliasib13/290ff4bcbd64e2e3db1e/raw/e7704b2c3d65b2d957b1c656db1987cfcec4120e/indicadores.json",
+            url: "http://banot.etsii.ull.es/alu4396/VIStac-IMAS-Can/indicadores.json",
             dataType: "json",
             timeout: 10000,
             success: function(data) {

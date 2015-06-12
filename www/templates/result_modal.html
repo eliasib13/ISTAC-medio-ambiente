@@ -15,6 +15,9 @@
                     <ion-item class="item item-divider">{{tiempo.title}}</ion-item>
                 <span class="dato">
                     <span class="cursiva">Dato ({{medida_unit}}): </span>{{result_consulta.observation[getDatoIndex(lugar.code,tiempo.code)]}}<br>
+                    <span class="cursiva">Con respecto al total de Canarias: {{
+                        ((result_consulta.observation[getDatoIndex(lugar.code,tiempo.code)] / result_consulta.observation[getDatoIndex(canaryCode,tiempo.code)]) * 100).toFixed(2)
+                        }}%</span>
                 </span>
                 </div>
             </ion-list>

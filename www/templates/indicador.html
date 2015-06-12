@@ -1,24 +1,12 @@
 <ion-view view-title="{{indicadorTitle}}">
     <ion-content id="categoria-content">
         <ion-list class="list list-inset">
-            <ion-item class="item item-divider"><b>Dimesiones geográficas</b></ion-item>
-            <ion-toggle ng-repeat="dimension in geoDimensions" ng-model="shownGeoDimensions[dimension.code]" toggle-class="toggle-positive">{{dimension.title}}</ion-toggle>
-        </ion-list>
-        <ion-list class="list list-inset">
             <ion-item class="item item-divider"><b>Lugares</b></ion-item>
-            <ion-toggle ng-repeat="lugar in lugares" ng-model="lugar.isSelected" toggle-class="toggle-positive" ng-show="shownGeoDimensions[lugar.granularityCode]">{{lugar.title}}</ion-toggle>
-        </ion-list>
-        <ion-list class="list list-inset">
-            <ion-item class="item item-divider"><b>Granularidad temporal</b></ion-item>
-            <ion-toggle ng-repeat="granularidad in granularityTemp" ng-model="shownGranularityTemp[granularidad.code]" toggle-class="toggle-positive">{{granularidad.title}}</ion-toggle>
+            <ion-toggle ng-repeat="lugar in lugares" ng-model="lugar.isSelected" toggle-class="toggle-positive">{{lugar.title}}</ion-toggle>
         </ion-list>
         <ion-list class="list list-inset">
             <ion-item class="item item-divider"><b>Tiempo</b></ion-item>
-            <ion-toggle ng-repeat="tiempo in tiempos" ng-model="tiempo.isSelected" toggle-class="toggle-positive" ng-show="shownGranularityTemp[tiempo.granularityCode]">{{tiempo.title}}</ion-toggle>
-        </ion-list>
-        <ion-list class="list list-inset">
-            <ion-item class="item item-divider"><b>Medidas</b></ion-item>
-            <ion-toggle ng-repeat="medida in medidas" ng-model="medida.isSelected" toggle-class="toggle-positive">{{medida.title}} ({{medida.unit}})</ion-toggle>
+            <ion-toggle ng-repeat="tiempo in tiempos" ng-model="tiempo.isSelected" toggle-class="toggle-positive">{{tiempo.title}}</ion-toggle>
         </ion-list>
         <button id="consultar" class="button button-block button-positive">Realizar consulta</button>
     </ion-content>

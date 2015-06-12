@@ -13,8 +13,8 @@
                 <ion-item class="item item-divider"><b>{{lugar.title}}</b></ion-item>
                 <div class="card" ng-repeat="tiempo in selectedTiempos">
                     <ion-item class="item item-divider">{{tiempo.title}}</ion-item>
-                <span class="dato" ng-repeat="medida in selectedMeasures">
-                    <span class="cursiva">{{medida.title}} ({{medida.unit}}): </span>{{result_consulta.observation[getDatoIndex(lugar.code,tiempo.code,medida.code)]}}<br>
+                <span class="dato">
+                    <span class="cursiva">Dato ({{medida_unit}}): </span>{{result_consulta.observation[getDatoIndex(lugar.code,tiempo.code)]}}<br>
                 </span>
                 </div>
             </ion-list>
@@ -22,9 +22,9 @@
         <div id="chart-data" ng-show="isDataMode(2)">
             <ion-list class="list list-inset" ng-repeat="lugar in selectedLugares">
                 <ion-item class="item item-divider"><b>{{lugar.title}}</b></ion-item>
-                <div class="card" ng-repeat="medida in selectedMeasures">
-                    <ion-item class="item item-divider">{{medida.title}} ({{medida.unit}})</ion-item>
-                    <svg class="grafica" id="{{'graf-'+$parent.$index+'-'+$index}}"></svg>
+                <div class="card">
+                    <ion-item class="item item-divider">Dato ({{medida_unit}})</ion-item>
+                    <svg class="grafica" id="{{'graf-'+$index}}"></svg>
                 </div>
             </ion-list>
         </div>

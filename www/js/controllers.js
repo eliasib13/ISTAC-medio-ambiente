@@ -128,13 +128,13 @@ angular.module('starter.controllers', [])
             template: $scope.loadingTemplate
         });
 
-        $scope.geoDimensions = [];
-        $scope.shownGeoDimensions = {};
+        /*$scope.geoDimensions = [];
+        $scope.shownGeoDimensions = {};*/
         $scope.lugares = [];
-        $scope.granularityTemp = [];
-        $scope.shownGranularityTemp = {};
+        /*$scope.granularityTemp = [];
+        $scope.shownGranularityTemp = {};*/
         $scope.tiempos = [];
-        $scope.medidas = [];
+        //$scope.medidas = [];
 
         function errorDimensionsTimeout() {
             $ionicLoading.hide();
@@ -152,19 +152,27 @@ angular.module('starter.controllers', [])
                     $scope.datos_consulta = data;
                     $scope.indicadorTitle = $scope.datos_consulta.title.es;
 
-                    for (var i = 0; i < $scope.datos_consulta.dimension.GEOGRAPHICAL.granularity.length; i++) {
+                    /*for (var i = 0; i < $scope.datos_consulta.dimension.GEOGRAPHICAL.granularity.length; i++) {
                         $scope.geoDimensions.push({
                             id: i,
                             code: $scope.datos_consulta.dimension.GEOGRAPHICAL.granularity[i].code,
                             title: $scope.datos_consulta.dimension.GEOGRAPHICAL.granularity[i].title.es
                         });
                         $scope.shownGeoDimensions[$scope.geoDimensions[i].code] = false;
-                    };
+                    };*/
 
-                    for (var i = 0; i < $scope.datos_consulta.dimension.GEOGRAPHICAL.representation.length; i++)
-                        $scope.lugares.push({id: i, code: $scope.datos_consulta.dimension.GEOGRAPHICAL.representation[i].code, title: $scope.datos_consulta.dimension.GEOGRAPHICAL.representation[i].title.es, granularityCode:$scope.datos_consulta.dimension.GEOGRAPHICAL.representation[i].granularityCode, isSelected: false});
+                    for (var i = 0; i < $scope.datos_consulta.dimension.GEOGRAPHICAL.representation.length; i++) {
+                        if ($scope.datos_consulta.dimension.GEOGRAPHICAL.representation[i].granularityCode == "ISLANDS")
+                            $scope.lugares.push({
+                                id: i,
+                                code: $scope.datos_consulta.dimension.GEOGRAPHICAL.representation[i].code,
+                                title: $scope.datos_consulta.dimension.GEOGRAPHICAL.representation[i].title.es,
+                                granularityCode: $scope.datos_consulta.dimension.GEOGRAPHICAL.representation[i].granularityCode,
+                                isSelected: false
+                            });
+                    }
 
-                    for (var i = 0; i < $scope.datos_consulta.dimension.TIME.granularity.length; i++) {
+                    /*for (var i = 0; i < $scope.datos_consulta.dimension.TIME.granularity.length; i++) {
                         $scope.granularityTemp.push({
                             id: i,
                             code: $scope.datos_consulta.dimension.TIME.granularity[i].code,
@@ -172,13 +180,24 @@ angular.module('starter.controllers', [])
                             isSelected: true
                         });
                         $scope.shownGranularityTemp[$scope.granularityTemp[i].code] = false;
-                    };
+                    };*/
 
-                    for (var i = 0; i < $scope.datos_consulta.dimension.TIME.representation.length; i++)
-                        $scope.tiempos.push({id: i, code: $scope.datos_consulta.dimension.TIME.representation[i].code, title: $scope.datos_consulta.dimension.TIME.representation[i].title.es, granularityCode: $scope.datos_consulta.dimension.TIME.representation[i].granularityCode, isSelected: false});
+                    for (var i = 0; i < $scope.datos_consulta.dimension.TIME.representation.length; i++) {
+                        if ($scope.datos_consulta.dimension.TIME.representation[i].granularityCode == "YEARLY")
+                            $scope.tiempos.push({
+                                id: i,
+                                code: $scope.datos_consulta.dimension.TIME.representation[i].code,
+                                title: $scope.datos_consulta.dimension.TIME.representation[i].title.es,
+                                granularityCode: $scope.datos_consulta.dimension.TIME.representation[i].granularityCode,
+                                isSelected: false
+                            });
+                    }
 
-                    for (var i = 0; i < $scope.datos_consulta.dimension.MEASURE.representation.length; i++)
-                        $scope.medidas.push({id: i, code: $scope.datos_consulta.dimension.MEASURE.representation[i].code, title: $scope.datos_consulta.dimension.MEASURE.representation[i].title.es, unit: $scope.datos_consulta.dimension.MEASURE.representation[i].quantity.unit.es, isSelected: false});
+                    for (var i = 0; i < $scope.datos_consulta.dimension.MEASURE.representation.length; i++) {
+                        if ($scope.datos_consulta.dimension.MEASURE.representation[i].code == "ABSOLUTE")
+                            $scope.medida_unit = $scope.datos_consulta.dimension.MEASURE.representation[i].quantity.unit.es;
+                    }
+
 
                     $ionicLoading.hide();
                 },
@@ -222,11 +241,13 @@ angular.module('starter.controllers', [])
                 template: $scope.loadingTemplate
             });
 
+            $scope.canaryCode = 'ES70';
+
             $scope.selectedLugares = [];
             $scope.selectedTiempos = [];
-            $scope.selectedMeasures = [];
+            //$scope.selectedMeasures = [];
 
-            var base_url = 'http://www.gobiernodecanarias.org/istac/indicators/api/indicators/v1.0/indicators/GANADO_BOVINO/data?';
+            var base_url = 'http://www.gobiernodecanarias.org/istac/indicators/api/indicators/v1.0/indicators/' + $stateParams['indicadorId'].toUpperCase() + '/data?';
             var representation = 'representation=';
             var granularity = 'granularity=';
             var geographical = 'GEOGRAPHICAL';
@@ -234,7 +255,7 @@ angular.module('starter.controllers', [])
             var measure = 'MEASURE';
             var end_url = '&api_key=special-key';
 
-            var url_consulta = base_url+representation+geographical+'[';
+            var url_consulta = base_url+representation+geographical+'['+$scope.canaryCode+'|';
 
             for(var i = 0; i < $scope.lugares.length; i++) {
                 if ($scope.lugares[i].isSelected) {
@@ -258,9 +279,9 @@ angular.module('starter.controllers', [])
             if ($scope.selectedTiempos.length == 0)
                 $scope.selectedTiempos = $scope.tiempos;
 
-            url_consulta += ']:' + measure + '[';
+            url_consulta += ']:' + measure + '[ABSOLUTE]';
 
-            for(var i = 0; i < $scope.medidas.length; i++) {
+            /*for(var i = 0; i < $scope.medidas.length; i++) {
                 if ($scope.medidas[i].isSelected) {
                     url_consulta += $scope.medidas[i].code + '|';
                     $scope.selectedMeasures.push($scope.medidas[i]);
@@ -268,11 +289,12 @@ angular.module('starter.controllers', [])
             }
 
             if ($scope.selectedMeasures.length == 0)
-                $scope.selectedMeasures = $scope.medidas;
+                $scope.selectedMeasures = $scope.medidas;*/
 
-            url_consulta += ']&' + granularity + geographical + '[';
+            url_consulta += ']&' + granularity + geographical + '[REGIONS|ISLANDS]';
+            url_consulta += ':' + time + '[YEARLY]' + end_url;
 
-            for(var i = 0; i < $scope.geoDimensions.length; i++) {
+            /*for(var i = 0; i < $scope.geoDimensions.length; i++) {
                 if ($scope.geoDimensions[i].isSelected)
                     url_consulta += $scope.geoDimensions[i].code + '|';
             }
@@ -282,9 +304,7 @@ angular.module('starter.controllers', [])
             for(var i = 0; i < $scope.granularityTemp.length; i++) {
                 if ($scope.granularityTemp[i].isSelected)
                     url_consulta += $scope.granularityTemp[i].code + '|';
-            }
-
-            url_consulta += ']' + end_url;
+            }*/
 
             $.ajax({
                 type: "GET",
@@ -295,11 +315,11 @@ angular.module('starter.controllers', [])
                 success: function(data) {
                     $scope.result_consulta = data;
 
-                    $scope.getDatoIndex = function (geoCode, timeCode, measureCode) {
+                    $scope.getDatoIndex = function (geoCode, timeCode) {
                         var geoIndex, timeIndex, measureIndex;
                         geoIndex = $scope.result_consulta.dimension.GEOGRAPHICAL.representation.index[geoCode];
                         timeIndex = $scope.result_consulta.dimension.TIME.representation.index[timeCode];
-                        measureIndex = $scope.result_consulta.dimension.MEASURE.representation.index[measureCode];
+                        measureIndex = $scope.result_consulta.dimension.MEASURE.representation.index['ABSOLUTE'];
 
                         var geoSize, timeSize, measureSize;
                         geoSize = $scope.result_consulta.dimension.GEOGRAPHICAL.representation.size;
@@ -313,57 +333,55 @@ angular.module('starter.controllers', [])
 
                     $scope.drawChart = function(){
                         for (var i = 0; i < $scope.selectedLugares.length; i++) {
-                            for (var j = 0; j < $scope.selectedMeasures.length; j++) {
-                                var data = [];
-                                for (var k = 0; k < $scope.selectedTiempos.length; k++) {
-                                    data.push({
-                                        "dato": $scope.result_consulta.observation[$scope.getDatoIndex($scope.selectedLugares[i].code, $scope.selectedTiempos[k].code, $scope.selectedMeasures[j].code)],
-                                        "fecha": $scope.selectedTiempos[k].code
-                                    });
-                                }
-                                data.reverse();
-
-                                $('#graf-' + i + '-' + j).empty();
-                                var grafica = d3.select('#graf-' + i + '-' + j),
-                                    WIDTH = $('#graf-' + i + '-' + j).width(),
-                                    HEIGHT = $('#graf-' + i + '-' + j).height(),
-                                    MARGINS = {
-                                        top: 20,
-                                        right: 20,
-                                        bottom: 20,
-                                        left: 50
-                                    },
-                                    xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([parseInt(data[0].fecha),parseInt(data[data.length-1].fecha)]),
-                                    maxDato = -Infinity, minDato = Infinity;
-
-                                for (var x = 0; x < data.length; x++) {
-                                    var dato_int = parseFloat(data[x].dato)
-                                    if (dato_int > maxDato)
-                                        maxDato = dato_int;
-                                    if (dato_int < minDato)
-                                        minDato = dato_int;
-                                }
-                                var yScale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([minDato,maxDato]),
-                                    xAxis = d3.svg.axis().scale(xScale).tickFormat(d3.format("d")).ticks(6),
-                                    yAxis = d3.svg.axis().scale(yScale).orient("left").tickFormat(d3.format("d")).ticks(6);
-
-                                grafica.append("svg:g").attr("class", "axis").attr("transform", "translate(0, " + (HEIGHT - MARGINS.bottom) + ")").call(xAxis);
-                                grafica.append("svg:g").attr("class", "axis").attr("transform", "translate(" + (MARGINS.left) + ",0)").call(yAxis);
-
-                                var lineGen = d3.svg.line()
-                                    .x(function (d) {
-                                        return xScale(d.fecha);
-                                    })
-                                    .y(function (d) {
-                                        return yScale(d.dato);
-                                    });
-
-                                grafica.append('svg:path')
-                                    .attr('d', lineGen(data))
-                                    .attr('stroke', '#0c63ee')
-                                    .attr('stroke-width', 2)
-                                    .attr('fill', 'none');
+                            var data = [];
+                            for (var k = 0; k < $scope.selectedTiempos.length; k++) {
+                                data.push({
+                                    "dato": $scope.result_consulta.observation[$scope.getDatoIndex($scope.selectedLugares[i].code, $scope.selectedTiempos[k].code)],
+                                    "fecha": $scope.selectedTiempos[k].code
+                                });
                             }
+                            data.reverse();
+
+                            $('#graf-' + i).empty();
+                            var grafica = d3.select('#graf-' + i),
+                                WIDTH = $('#graf-' + i).width(),
+                                HEIGHT = $('#graf-' + i).height(),
+                                MARGINS = {
+                                    top: 20,
+                                    right: 20,
+                                    bottom: 20,
+                                    left: 50
+                                },
+                                xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([parseInt(data[0].fecha),parseInt(data[data.length-1].fecha)]),
+                                maxDato = -Infinity, minDato = Infinity;
+
+                            for (var x = 0; x < data.length; x++) {
+                                var dato_int = parseFloat(data[x].dato)
+                                if (dato_int > maxDato)
+                                    maxDato = dato_int;
+                                if (dato_int < minDato)
+                                    minDato = dato_int;
+                            }
+                            var yScale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([minDato,maxDato]),
+                                xAxis = d3.svg.axis().scale(xScale).tickFormat(d3.format("d")).ticks(6),
+                                yAxis = d3.svg.axis().scale(yScale).orient("left").tickFormat(d3.format("d")).ticks(6);
+
+                            grafica.append("svg:g").attr("class", "axis").attr("transform", "translate(0, " + (HEIGHT - MARGINS.bottom) + ")").call(xAxis);
+                            grafica.append("svg:g").attr("class", "axis").attr("transform", "translate(" + (MARGINS.left) + ",0)").call(yAxis);
+
+                            var lineGen = d3.svg.line()
+                                .x(function (d) {
+                                    return xScale(d.fecha);
+                                })
+                                .y(function (d) {
+                                    return yScale(d.dato);
+                                });
+
+                            grafica.append('svg:path')
+                                .attr('d', lineGen(data))
+                                .attr('stroke', '#0c63ee')
+                                .attr('stroke-width', 2)
+                                .attr('fill', 'none');
                         }
                     };
 

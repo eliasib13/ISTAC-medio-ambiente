@@ -241,10 +241,11 @@ angular.module('starter.controllers', [])
                 }
             }
 
-            if ($scope.selectedLugares.length == 0)
+            if ($scope.selectedLugares.length == 0) {
                 $scope.selectedLugares = $scope.lugares;
-
-            console.log($scope.selectedLugares);
+                for(var i = 0; i < $scope.selectedLugares.length; i++)
+                    url_consulta += $scope.selectedLugares[i].code + '|';
+            }
 
             url_consulta += ']:' + time + '[';
 

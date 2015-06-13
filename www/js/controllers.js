@@ -105,7 +105,7 @@ angular.module('starter.controllers', [])
                 success: function(data) {
                     $scope.indicadores = [];
                     for (var i = 0; i < data.items.length; i++) {
-                        if ($scope.indicadoresPermitidos.indexOf(data.items[i].code) != -1)
+                        if ($scope.indicadoresPermitidos[data.items[i].code])
                             $scope.indicadores.push({id: i, code: data.items[i].id, title: data.items[i].title.es});
                     }
 
@@ -128,13 +128,10 @@ angular.module('starter.controllers', [])
             template: $scope.loadingTemplate
         });
 
-        /*$scope.geoDimensions = [];
-        $scope.shownGeoDimensions = {};*/
+        $scope.indicadorActual = $scope.indicadoresPermitidos[$stateParams['indicadorId'].toUpperCase()];
+
         $scope.lugares = [];
-        /*$scope.granularityTemp = [];
-        $scope.shownGranularityTemp = {};*/
         $scope.tiempos = [];
-        //$scope.medidas = [];
 
         function errorDimensionsTimeout() {
             $ionicLoading.hide();
@@ -152,15 +149,6 @@ angular.module('starter.controllers', [])
                     $scope.datos_consulta = data;
                     $scope.indicadorTitle = $scope.datos_consulta.title.es;
 
-                    /*for (var i = 0; i < $scope.datos_consulta.dimension.GEOGRAPHICAL.granularity.length; i++) {
-                        $scope.geoDimensions.push({
-                            id: i,
-                            code: $scope.datos_consulta.dimension.GEOGRAPHICAL.granularity[i].code,
-                            title: $scope.datos_consulta.dimension.GEOGRAPHICAL.granularity[i].title.es
-                        });
-                        $scope.shownGeoDimensions[$scope.geoDimensions[i].code] = false;
-                    };*/
-
                     for (var i = 0; i < $scope.datos_consulta.dimension.GEOGRAPHICAL.representation.length; i++) {
                         if ($scope.datos_consulta.dimension.GEOGRAPHICAL.representation[i].granularityCode == "ISLANDS")
                             $scope.lugares.push({
@@ -171,16 +159,6 @@ angular.module('starter.controllers', [])
                                 isSelected: false
                             });
                     }
-
-                    /*for (var i = 0; i < $scope.datos_consulta.dimension.TIME.granularity.length; i++) {
-                        $scope.granularityTemp.push({
-                            id: i,
-                            code: $scope.datos_consulta.dimension.TIME.granularity[i].code,
-                            title: $scope.datos_consulta.dimension.TIME.granularity[i].title.es,
-                            isSelected: true
-                        });
-                        $scope.shownGranularityTemp[$scope.granularityTemp[i].code] = false;
-                    };*/
 
                     for (var i = 0; i < $scope.datos_consulta.dimension.TIME.representation.length; i++) {
                         if ($scope.datos_consulta.dimension.TIME.representation[i].granularityCode == "YEARLY")
@@ -245,7 +223,6 @@ angular.module('starter.controllers', [])
 
             $scope.selectedLugares = [];
             $scope.selectedTiempos = [];
-            //$scope.selectedMeasures = [];
 
             var base_url = 'http://www.gobiernodecanarias.org/istac/indicators/api/indicators/v1.0/indicators/' + $stateParams['indicadorId'].toUpperCase() + '/data?';
             var representation = 'representation=';
@@ -267,6 +244,8 @@ angular.module('starter.controllers', [])
             if ($scope.selectedLugares.length == 0)
                 $scope.selectedLugares = $scope.lugares;
 
+            console.log($scope.selectedLugares);
+
             url_consulta += ']:' + time + '[';
 
             for(var i = 0; i < $scope.tiempos.length; i++) {
@@ -280,31 +259,8 @@ angular.module('starter.controllers', [])
                 $scope.selectedTiempos = $scope.tiempos;
 
             url_consulta += ']:' + measure + '[ABSOLUTE]';
-
-            /*for(var i = 0; i < $scope.medidas.length; i++) {
-                if ($scope.medidas[i].isSelected) {
-                    url_consulta += $scope.medidas[i].code + '|';
-                    $scope.selectedMeasures.push($scope.medidas[i]);
-                }
-            }
-
-            if ($scope.selectedMeasures.length == 0)
-                $scope.selectedMeasures = $scope.medidas;*/
-
             url_consulta += ']&' + granularity + geographical + '[REGIONS|ISLANDS]';
             url_consulta += ':' + time + '[YEARLY]' + end_url;
-
-            /*for(var i = 0; i < $scope.geoDimensions.length; i++) {
-                if ($scope.geoDimensions[i].isSelected)
-                    url_consulta += $scope.geoDimensions[i].code + '|';
-            }
-
-            url_consulta += ']:' + time + '[';
-
-            for(var i = 0; i < $scope.granularityTemp.length; i++) {
-                if ($scope.granularityTemp[i].isSelected)
-                    url_consulta += $scope.granularityTemp[i].code + '|';
-            }*/
 
             $.ajax({
                 type: "GET",

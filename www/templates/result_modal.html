@@ -15,9 +15,10 @@
                     <ion-item class="item item-divider">{{tiempo.title}}</ion-item>
                 <span class="dato">
                     <span class="cursiva">Dato ({{medida_unit}}): </span>{{result_consulta.observation[getDatoIndex(lugar.code,tiempo.code)]}}<br>
-                    <span class="cursiva">Con respecto al total de Canarias: {{
+                    <span style="padding-left: 4px;" class="cursiva" ng-show="indicadorActual.compare == 'percent'">Con respecto al total de Canarias: {{
                         ((result_consulta.observation[getDatoIndex(lugar.code,tiempo.code)] / result_consulta.observation[getDatoIndex(canaryCode,tiempo.code)]) * 100).toFixed(2)
                         }}%</span>
+                    <span style="padding-left: 4px;" class="cursiva" ng-show="indicadorActual.compare == 'total'">Total en Canarias: {{result_consulta.observation[getDatoIndex(canaryCode,tiempo.code)]}}</span>
                 </span>
                 </div>
             </ion-list>

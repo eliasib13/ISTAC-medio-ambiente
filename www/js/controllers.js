@@ -109,7 +109,29 @@ angular.module('starter.controllers', [])
                             $scope.indicadores.push({id: i, code: data.items[i].id, title: data.items[i].title.es});
                     }
 
-                    $ionicLoading.hide();
+                    $.ajax({
+                        type: "GET",
+                        url: "http://banot.etsii.ull.es/alu4396/VIStac-IMAS-Can/derivados.json",
+                        dataType: "json",
+                        timeout: 10000,
+                        success: function(data) {
+                            var indicadores_cat_actual = data[$scope.categoria.code];
+                            if (indicadores_cat_actual){
+                                var lista = Object.keys(indicadores_cat_actual);
+                                for (var i = 0; i < lista.length; i++)
+                                    $scope.indicadores.push({code: indicadores_cat_actual[lista[i]].code, title: indicadores_cat_actual[lista[i]].title, indicators: indicadores_cat_actual[lista[i]].indicators});
+                            }
+                            $ionicLoading.hide();
+                        },
+                        error: function (jqXHR, textStatus){
+                            if(textStatus === "timeout") {
+                                navigator.notification.alert('La conexión con la fuente de datos ha expirado. Saliendo de la aplicación...',
+                                    errorLoadingMarkers,
+                                    'Error',
+                                    'Aceptar');
+                            }
+                        }
+                    });
                 },
                 error: function (jqXHR, textStatus){
                     if(textStatus === "timeout") {

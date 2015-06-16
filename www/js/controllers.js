@@ -118,8 +118,14 @@ angular.module('starter.controllers', [])
                             var indicadores_cat_actual = data[$scope.categoria.code];
                             if (indicadores_cat_actual){
                                 var lista = Object.keys(indicadores_cat_actual);
-                                for (var i = 0; i < lista.length; i++)
-                                    $scope.indicadores.push({code: indicadores_cat_actual[lista[i]].code, title: indicadores_cat_actual[lista[i]].title, indicators: indicadores_cat_actual[lista[i]].indicators});
+                                for (var i = 0; i < lista.length; i++) {
+                                    if ($scope.indicadoresPermitidos[lista[i]])
+                                        $scope.indicadores.push({
+                                            code: indicadores_cat_actual[lista[i]].code,
+                                            title: indicadores_cat_actual[lista[i]].title,
+                                            indicators: indicadores_cat_actual[lista[i]].indicators
+                                        });
+                                }
                             }
                             $ionicLoading.hide();
                         },

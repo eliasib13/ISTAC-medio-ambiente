@@ -225,6 +225,7 @@ angular.module('starter.controllers', [])
                 });
             }
             else { // Si es un indicador derivado...
+                $scope.indicadorTitle = $scope.indicadoresDerivados[$scope.categoriaCode][$scope.indicadorCode].title;
                 $scope.common_years = [];
                 $scope.years_retrieved = {};
                 for (var i = 0; i < $scope.indicadoresDerivados[$scope.categoriaCode][$scope.indicadorCode].indicators.length; i++)
@@ -247,7 +248,7 @@ angular.module('starter.controllers', [])
                     });
                 });
 
-                var interval = setInterval(function(){
+                var interval = setInterval(function(){ // Comprueba cada 300ms que se han completado las llamadas asíncronas.
                     var completed = true;
                     for (var i = 0; i < Object.keys($scope.years_retrieved).length; i++) {
                         if (Object.keys($scope.years_retrieved)[i] != "undefined") // Evitamos el campo "undefined" que genera la funcion Object.keys
@@ -255,7 +256,7 @@ angular.module('starter.controllers', [])
                     }
                     if (completed){
                         clearInterval(interval);
-                        console.log("finished");
+
                         $ionicLoading.hide();
                     }
                 },300);

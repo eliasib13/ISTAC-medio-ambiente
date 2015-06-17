@@ -49,8 +49,28 @@ angular.module('starter.controllers', [])
             }
         });
 
+        $.ajax({
+            type: "GET",
+            url: "http://banot.etsii.ull.es/alu4396/VIStac-IMAS-Can/derivados.json",
+            dataType: "json",
+            timeout: 10000,
+            success: function(data) {
+                $scope.indicadoresDerivados = data;
+            },
+            error: function (jqXHR, textStatus) {
+                if(textStatus === "timeout") {
+                    navigator.notification.alert('La conexión con la fuente de datos ha expirado. Saliendo de la aplicación...',
+                        errorLoadingMarkers,
+                        'Error',
+                        'Aceptar');
+                }
+            }
+        });
+
         $scope.categorias = [];
         $scope.indicadores = [];
+        /*$scope.lista_derivados = [];
+        $scope.indicadores_cat_actual = {};*/
     })
 
     .controller('HomeCtrl', function($scope, $ionicLoading) {
@@ -109,35 +129,19 @@ angular.module('starter.controllers', [])
                             $scope.indicadores.push({id: i, code: data.items[i].id, title: data.items[i].title.es});
                     }
 
-                    $.ajax({
-                        type: "GET",
-                        url: "http://banot.etsii.ull.es/alu4396/VIStac-IMAS-Can/derivados.json",
-                        dataType: "json",
-                        timeout: 10000,
-                        success: function(data) {
-                            var indicadores_cat_actual = data[$scope.categoria.code];
-                            if (indicadores_cat_actual){
-                                var lista = Object.keys(indicadores_cat_actual);
-                                for (var i = 0; i < lista.length; i++) {
-                                    if ($scope.indicadoresPermitidos[lista[i]])
-                                        $scope.indicadores.push({
-                                            code: indicadores_cat_actual[lista[i]].code,
-                                            title: indicadores_cat_actual[lista[i]].title,
-                                            indicators: indicadores_cat_actual[lista[i]].indicators
-                                        });
-                                }
-                            }
-                            $ionicLoading.hide();
-                        },
-                        error: function (jqXHR, textStatus){
-                            if(textStatus === "timeout") {
-                                navigator.notification.alert('La conexión con la fuente de datos ha expirado. Saliendo de la aplicación...',
-                                    errorLoadingMarkers,
-                                    'Error',
-                                    'Aceptar');
-                            }
+                    $scope.indicadores_cat_actual = $scope.indicadoresDerivados[$scope.categoria.code];
+                    if ($scope.indicadores_cat_actual){
+                        $scope.lista_derivados = Object.keys($scope.indicadores_cat_actual);
+                        for (var i = 0; i < $scope.lista_derivados.length; i++) {
+                            if ($scope.indicadoresPermitidos[$scope.lista_derivados[i]])
+                                $scope.indicadores.push({
+                                    code: $scope.indicadores_cat_actual[$scope.lista_derivados[i]].code,
+                                    title: $scope.indicadores_cat_actual[$scope.lista_derivados[i]].title,
+                                    indicators: $scope.indicadores_cat_actual[$scope.lista_derivados[i]].indicators
+                                });
                         }
-                    });
+                    }
+                    $ionicLoading.hide();
                 },
                 error: function (jqXHR, textStatus){
                     if(textStatus === "timeout") {
@@ -152,11 +156,13 @@ angular.module('starter.controllers', [])
     })
 
     .controller('IndicadorCtrl', function($stateParams, $scope, $ionicLoading, $ionicModal) {
+        $scope.categoriaCode = $stateParams['categoriaId'];
+        $scope.indicadorCode = $stateParams['indicadorId'].toUpperCase();
         $ionicLoading.show({
             template: $scope.loadingTemplate
         });
 
-        $scope.indicadorActual = $scope.indicadoresPermitidos[$stateParams['indicadorId'].toUpperCase()];
+        $scope.indicadorActual = $scope.indicadoresPermitidos[$scope.indicadorCode];
 
         $scope.lugares = [];
         $scope.tiempos = [];
@@ -167,55 +173,93 @@ angular.module('starter.controllers', [])
         }
 
         $scope.$on('$ionicView.afterEnter', function() {
-            $.ajax({
-                type: "GET",
-                url: "http://www.gobiernodecanarias.org/istac/indicators/api/indicators/v1.0/indicators/"+$stateParams['indicadorId'].toUpperCase()+"?api_key=special-key",
-                dataType: "jsonp",
-                jsonp: "_callback",
-                timeout: 10000,
-                success: function(data) {
-                    $scope.datos_consulta = data;
-                    $scope.indicadorTitle = $scope.datos_consulta.title.es;
+            if (!$scope.indicadoresDerivados[$scope.categoriaCode][$scope.indicadorCode]) { // Si es un indicador básico...
+                $.ajax({
+                    type: "GET",
+                    url: "http://www.gobiernodecanarias.org/istac/indicators/api/indicators/v1.0/indicators/" + $scope.indicadorCode + "?api_key=special-key",
+                    dataType: "jsonp",
+                    jsonp: "_callback",
+                    timeout: 10000,
+                    success: function (data) {
+                        $scope.datos_consulta = data;
+                        $scope.indicadorTitle = $scope.datos_consulta.title.es;
 
-                    for (var i = 0; i < $scope.datos_consulta.dimension.GEOGRAPHICAL.representation.length; i++) {
-                        if ($scope.datos_consulta.dimension.GEOGRAPHICAL.representation[i].granularityCode == "ISLANDS")
-                            $scope.lugares.push({
-                                id: i,
-                                code: $scope.datos_consulta.dimension.GEOGRAPHICAL.representation[i].code,
-                                title: $scope.datos_consulta.dimension.GEOGRAPHICAL.representation[i].title.es,
-                                granularityCode: $scope.datos_consulta.dimension.GEOGRAPHICAL.representation[i].granularityCode,
-                                isSelected: false
-                            });
+                        for (var i = 0; i < $scope.datos_consulta.dimension.GEOGRAPHICAL.representation.length; i++) {
+                            if ($scope.datos_consulta.dimension.GEOGRAPHICAL.representation[i].granularityCode == "ISLANDS")
+                                $scope.lugares.push({
+                                    id: i,
+                                    code: $scope.datos_consulta.dimension.GEOGRAPHICAL.representation[i].code,
+                                    title: $scope.datos_consulta.dimension.GEOGRAPHICAL.representation[i].title.es,
+                                    granularityCode: $scope.datos_consulta.dimension.GEOGRAPHICAL.representation[i].granularityCode,
+                                    isSelected: false
+                                });
+                        }
+
+                        for (var i = 0; i < $scope.datos_consulta.dimension.TIME.representation.length; i++) {
+                            if ($scope.datos_consulta.dimension.TIME.representation[i].granularityCode == "YEARLY")
+                                $scope.tiempos.push({
+                                    id: i,
+                                    code: $scope.datos_consulta.dimension.TIME.representation[i].code,
+                                    title: $scope.datos_consulta.dimension.TIME.representation[i].title.es,
+                                    granularityCode: $scope.datos_consulta.dimension.TIME.representation[i].granularityCode,
+                                    isSelected: false
+                                });
+                        }
+
+                        for (var i = 0; i < $scope.datos_consulta.dimension.MEASURE.representation.length; i++) {
+                            if ($scope.datos_consulta.dimension.MEASURE.representation[i].code == "ABSOLUTE")
+                                $scope.medida_unit = $scope.datos_consulta.dimension.MEASURE.representation[i].quantity.unit.es;
+                        }
+
+
+                        $ionicLoading.hide();
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        if (textStatus == "timeout") {
+                            navigator.notification.alert('La conexión con la fuente de datos ha expirado. Inténtelo de nuevo.',
+                                errorDimensionsTimeout,
+                                'Error',
+                                'Aceptar');
+                        }
                     }
+                });
+            }
+            else { // Si es un indicador derivado...
+                $scope.common_years = [];
+                $scope.years_retrieved = {};
+                for (var i = 0; i < $scope.indicadoresDerivados[$scope.categoriaCode][$scope.indicadorCode].indicators.length; i++)
+                    $scope.years_retrieved[$scope.indicadoresDerivados[$scope.categoriaCode][$scope.indicadorCode].indicators[i].code] = false;
 
-                    for (var i = 0; i < $scope.datos_consulta.dimension.TIME.representation.length; i++) {
-                        if ($scope.datos_consulta.dimension.TIME.representation[i].granularityCode == "YEARLY")
-                            $scope.tiempos.push({
-                                id: i,
-                                code: $scope.datos_consulta.dimension.TIME.representation[i].code,
-                                title: $scope.datos_consulta.dimension.TIME.representation[i].title.es,
-                                granularityCode: $scope.datos_consulta.dimension.TIME.representation[i].granularityCode,
-                                isSelected: false
-                            });
+                $.each($scope.indicadoresDerivados[$scope.categoriaCode][$scope.indicadorCode].indicators, function(index, indicator_code){
+                    $.ajax({
+                        type: "GET",
+                        url: "http://www.gobiernodecanarias.org/istac/indicators/api/indicators/v1.0/indicators/" + indicator_code + "?api_key=special-key",
+                        dataType: "jsonp",
+                        jsonp: "_callback",
+                        timeout: 10000,
+                        success: function (data) {
+                            var years = [];
+                            for (var i = 0; i < data.dimension.TIME.representation.length; i++)
+                                years.push(data.dimension.TIME.representation[i].code);
+                            $scope.common_years.push(years);
+                            $scope.years_retrieved[indicator_code] = true;
+                        }
+                    });
+                });
+
+                var interval = setInterval(function(){
+                    var completed = true;
+                    for (var i = 0; i < Object.keys($scope.years_retrieved).length; i++) {
+                        if (Object.keys($scope.years_retrieved)[i] != "undefined") // Evitamos el campo "undefined" que genera la funcion Object.keys
+                            completed = completed && $scope.years_retrieved[Object.keys($scope.years_retrieved)[i]];
                     }
-
-                    for (var i = 0; i < $scope.datos_consulta.dimension.MEASURE.representation.length; i++) {
-                        if ($scope.datos_consulta.dimension.MEASURE.representation[i].code == "ABSOLUTE")
-                            $scope.medida_unit = $scope.datos_consulta.dimension.MEASURE.representation[i].quantity.unit.es;
+                    if (completed){
+                        clearInterval(interval);
+                        console.log("finished");
+                        $ionicLoading.hide();
                     }
-
-
-                    $ionicLoading.hide();
-                },
-                error: function (jqXHR, textStatus, errorThrown){
-                    if(textStatus == "timeout") {
-                        navigator.notification.alert('La conexión con la fuente de datos ha expirado. Inténtelo de nuevo.',
-                            errorDimensionsTimeout,
-                            'Error',
-                            'Aceptar');
-                    }
-                }
-            });
+                },300);
+            }
         });
 
         $ionicModal.fromTemplateUrl('templates/result_modal.html', {

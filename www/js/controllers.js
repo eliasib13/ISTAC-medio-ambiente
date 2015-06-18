@@ -254,10 +254,46 @@ angular.module('starter.controllers', [])
                         if (Object.keys($scope.years_retrieved)[i] != "undefined") // Evitamos el campo "undefined" que genera la funcion Object.keys
                             completed = completed && $scope.years_retrieved[Object.keys($scope.years_retrieved)[i]];
                     }
-                    if (completed){
+                    if (completed && $scope.common_years.length == $scope.indicadoresDerivados[$scope.categoriaCode][$scope.indicadorCode].indicators.length){ // Se asegura que el bucle haya terminado.
                         clearInterval(interval);
 
-                        $ionicLoading.hide();
+                        $.ajax({
+                            type: "GET",
+                            url: "http://www.gobiernodecanarias.org/istac/indicators/api/indicators/v1.0/indicators/" + $scope.indicadoresDerivados[$scope.categoriaCode][$scope.indicadorCode].indicators[0] + "?api_key=special-key",
+                            dataType: "jsonp",
+                            jsonp: "_callback",
+                            timeout: 10000,
+                            success: function (data) {
+                                for (var i = 0; i < data.dimension.GEOGRAPHICAL.representation.length; i++) {
+                                    if (data.dimension.GEOGRAPHICAL.representation[i].granularityCode == "ISLANDS") {
+                                        $scope.lugares.push({
+                                            id: i,
+                                            code: data.dimension.GEOGRAPHICAL.representation[i].code,
+                                            title: data.dimension.GEOGRAPHICAL.representation[i].title.es,
+                                            granularityCode: data.dimension.GEOGRAPHICAL.representation[i].granularityCode,
+                                            isSelected: false
+                                        });
+                                    }
+                                }
+
+                                while($scope.common_years.length > 1) {
+                                    // Se hace la intersección de los dos últimos elementos del array
+                                    var arr_one = $scope.common_years[$scope.common_years.length-1];
+                                    var arr_two = $scope.common_years[$scope.common_years.length-2];
+
+                                    $scope.common_years.pop();$scope.common_years.pop(); // Se eliminan las dos últimas posiciones del array
+
+                                    var intersection = arr_one.filter(function(n){ return arr_two.indexOf(n) != -1});
+
+                                    $scope.common_years.push(intersection);
+                                }
+
+                                for (var i = 0; i < $scope.common_years[0].length; i++)
+                                    $scope.tiempos.push({id: i, code: $scope.common_years[0][i], title: $scope.common_years[0][i], isSelected: false});
+
+                                $ionicLoading.hide();
+                            }
+                        });
                     }
                 },300);
             }

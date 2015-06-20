@@ -173,7 +173,7 @@ angular.module('starter.controllers', [])
         }
 
         $scope.$on('$ionicView.afterEnter', function() {
-            if (!$scope.indicadoresDerivados[$scope.categoriaCode][$scope.indicadorCode]) { // Si es un indicador básico...
+            if (!$scope.indicadoresDerivados[$scope.categoriaCode] || !$scope.indicadoresDerivados[$scope.categoriaCode][$scope.indicadorCode]) { // Si es un indicador básico...
                 $.ajax({
                     type: "GET",
                     url: "http://www.gobiernodecanarias.org/istac/indicators/api/indicators/v1.0/indicators/" + $scope.indicadorCode + "?api_key=special-key",

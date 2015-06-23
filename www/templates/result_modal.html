@@ -24,11 +24,23 @@
             </ion-list>
         </div>
         <div id="chart-data" ng-show="isDataMode(2)">
-            <ion-list class="list list-inset" ng-repeat="lugar in selectedLugares">
-                <ion-item class="item item-divider"><b>{{lugar.title}}</b></ion-item>
+            <ion-list class="list list-inset">
+                <ion-item class="item item-divider"><b>Islas</b></ion-item>
+                <div class="list card">
+                    <ion-item class="item item-divider">Leyenda</ion-item>
+                    <a class="item item-icon-left" ng-repeat="lugar in selectedLugares">
+                        <i class="icon ion-arrow-graph-up-right" ng-style="{ color: islands_colors[$index] }"></i>
+                        {{lugar.title}}
+                    </a>
+                </div>
                 <div class="card">
                     <ion-item class="item item-divider">Dato ({{medida_unit}})</ion-item>
-                    <svg class="grafica" id="{{'graf-'+$index}}"></svg>
+                    <svg class="grafica" id="graf-islas"></svg>
+                </div>
+                <ion-item class="item item-divider"><b>Total Canarias</b></ion-item>
+                <div class="card">
+                    <ion-item class="item item-divider">Dato ({{medida_unit}})</ion-item>
+                    <svg class="grafica" id="graf-canarias"></svg>
                 </div>
             </ion-list>
         </div>

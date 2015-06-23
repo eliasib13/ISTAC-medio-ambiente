@@ -323,6 +323,16 @@ angular.module('starter.controllers', [])
             $scope.closeModal();
         }
 
+        $scope.islands_colors = [
+            '#0c63ee', // Azul
+            '#F54931', // Rojo
+            '#22C71A', // Verde
+            '#EFFB0E', // Amarillo
+            '#BF5AC6', // Fucsia
+            '#B9EDF1', // Celeste
+            '#5D221B'  // Marrón
+        ];
+
         $scope.getDatoIndex = function (geoCode, timeCode) {
             var geoIndex, timeIndex, measureIndex;
             geoIndex = $scope.result_consulta.dimension.GEOGRAPHICAL.representation.index[geoCode];
@@ -338,6 +348,8 @@ angular.module('starter.controllers', [])
         };
 
         $scope.drawChart = function(){
+            var collection = [];
+            var data_canarias = [];
             for (var i = 0; i < $scope.selectedLugares.length; i++) {
                 var data = [];
                 for (var k = 0; k < $scope.selectedTiempos.length; k++) {
@@ -347,20 +359,33 @@ angular.module('starter.controllers', [])
                     });
                 }
                 data.reverse();
+                collection.push(data);
+            }
 
-                $('#graf-' + i).empty();
-                var grafica = d3.select('#graf-' + i),
-                    WIDTH = $('#graf-' + i).width(),
-                    HEIGHT = $('#graf-' + i).height(),
-                    MARGINS = {
-                        top: 20,
-                        right: 20,
-                        bottom: 20,
-                        left: 50
-                    },
-                    xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([parseInt(data[0].fecha),parseInt(data[data.length-1].fecha)]),
-                    maxDato = -Infinity, minDato = Infinity;
+            for (var k = 0; k < $scope.selectedTiempos.length; k++) {
+                data_canarias.push({
+                    "dato": $scope.result_consulta.observation[$scope.getDatoIndex($scope.canaryCode, $scope.selectedTiempos[k].code)],
+                    "fecha": $scope.selectedTiempos[k].code
+                });
+            }
+            data_canarias.reverse();
 
+            /*** GRÁFICA PARA LAS ISLAS ***/
+            $('#graf-islas').empty();
+            var grafica = d3.select('#graf-islas'),
+                WIDTH = $('#graf-islas').width(),
+                HEIGHT = $('#graf-islas').height(),
+                MARGINS = {
+                    top: 20,
+                    right: 20,
+                    bottom: 20,
+                    left: 50
+                },
+                xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([parseInt(data[0].fecha),parseInt(data[data.length-1].fecha)]),
+                maxDato = -Infinity, minDato = Infinity;
+
+            for (var i = 0; i < collection.length; i++){
+                var data = collection[i];
                 for (var x = 0; x < data.length; x++) {
                     var dato_int = parseFloat(data[x].dato)
                     if (dato_int > maxDato)
@@ -368,28 +393,76 @@ angular.module('starter.controllers', [])
                     if (dato_int < minDato)
                         minDato = dato_int;
                 }
-                var yScale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([minDato,maxDato]),
-                    xAxis = d3.svg.axis().scale(xScale).tickFormat(d3.format("d")).ticks(6),
-                    yAxis = d3.svg.axis().scale(yScale).orient("left").tickFormat(d3.format("d")).ticks(6);
+            }
 
-                grafica.append("svg:g").attr("class", "axis").attr("transform", "translate(0, " + (HEIGHT - MARGINS.bottom) + ")").call(xAxis);
-                grafica.append("svg:g").attr("class", "axis").attr("transform", "translate(" + (MARGINS.left) + ",0)").call(yAxis);
+            var yScale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([minDato,maxDato]),
+                xAxis = d3.svg.axis().scale(xScale).tickFormat(d3.format("d")).ticks(6),
+                yAxis = d3.svg.axis().scale(yScale).orient("left").tickFormat(d3.format("d")).ticks(6);
 
-                var lineGen = d3.svg.line()
-                    .x(function (d) {
-                        return xScale(d.fecha);
-                    })
-                    .y(function (d) {
-                        return yScale(d.dato);
-                    });
+            grafica.append("svg:g").attr("class", "axis").attr("transform", "translate(0, " + (HEIGHT - MARGINS.bottom) + ")").call(xAxis);
+            grafica.append("svg:g").attr("class", "axis").attr("transform", "translate(" + (MARGINS.left) + ",0)").call(yAxis);
 
+            var lineGen = d3.svg.line()
+                .x(function (d) {
+                    return xScale(d.fecha);
+                })
+                .y(function (d) {
+                    return yScale(d.dato);
+                });
+
+            for (var i = 0; i < collection.length; i++) {
                 grafica.append('svg:path')
-                    .attr('d', lineGen(data))
-                    .attr('stroke', '#0c63ee')
+                    .attr('d', lineGen(collection[i]))
+                    .attr('stroke', $scope.islands_colors[i])
                     .attr('stroke-width', 2)
                     .attr('fill', 'none');
+            };
+
+
+            /*** GRÁFICA PARA TOTAL CANARIAS ***/
+            $('#graf-canarias').empty();
+            var grafica = d3.select('#graf-canarias'),
+                WIDTH = $('#graf-canarias').width(),
+                HEIGHT = $('#graf-canarias').height(),
+                MARGINS = {
+                    top: 20,
+                    right: 20,
+                    bottom: 20,
+                    left: 50
+                },
+                xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([parseInt(data[0].fecha),parseInt(data[data.length-1].fecha)]),
+                maxDato = -Infinity, minDato = Infinity;
+
+
+            for (var x = 0; x < data_canarias.length; x++) {
+                var dato_int = parseFloat(data_canarias[x].dato)
+                if (dato_int > maxDato)
+                    maxDato = dato_int;
+                if (dato_int < minDato)
+                    minDato = dato_int;
             }
-        };
+
+            var yScale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([minDato,maxDato]),
+                xAxis = d3.svg.axis().scale(xScale).tickFormat(d3.format("d")).ticks(6),
+                yAxis = d3.svg.axis().scale(yScale).orient("left").tickFormat(d3.format("d")).ticks(6);
+
+            grafica.append("svg:g").attr("class", "axis").attr("transform", "translate(0, " + (HEIGHT - MARGINS.bottom) + ")").call(xAxis);
+            grafica.append("svg:g").attr("class", "axis").attr("transform", "translate(" + (MARGINS.left) + ",0)").call(yAxis);
+
+            var lineGen = d3.svg.line()
+                .x(function (d) {
+                    return xScale(d.fecha);
+                })
+                .y(function (d) {
+                    return yScale(d.dato);
+                });
+
+            grafica.append('svg:path')
+                .attr('d', lineGen(data_canarias))
+                .attr('stroke', $scope.islands_colors[0])
+                .attr('stroke-width', 2)
+                .attr('fill', 'none');
+        }
 
         $scope.data_mode = 1;
 
@@ -416,7 +489,7 @@ angular.module('starter.controllers', [])
             $scope.selectedLugares = [];
             $scope.selectedTiempos = [];
 
-            if (!$scope.indicadoresDerivados[$scope.categoriaCode][$scope.indicadorCode]) { // Si es un indicador básico...
+            if (!$scope.indicadoresDerivados[$scope.categoriaCode] || !$scope.indicadoresDerivados[$scope.categoriaCode][$scope.indicadorCode]) { // Si es un indicador básico...
                 var base_url = 'http://www.gobiernodecanarias.org/istac/indicators/api/indicators/v1.0/indicators/' + $stateParams['indicadorId'].toUpperCase() + '/data?';
                 var representation = 'representation=';
                 var granularity = 'granularity=';

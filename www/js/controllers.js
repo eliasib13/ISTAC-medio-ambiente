@@ -347,6 +347,11 @@ angular.module('starter.controllers', [])
             return (geoIndex * timeSize * measureSize) + (timeIndex * measureSize) + measureIndex;
         };
 
+        $scope.leyendaShown = false;
+        $scope.switchLeyenda = function() {
+            $scope.leyendaShown = !$scope.leyendaShown;
+        };
+
         $scope.drawChart = function(){
             var collection = [];
             var data_canarias = [];

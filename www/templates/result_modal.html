@@ -6,7 +6,7 @@
     <ion-content id="content-modal">
         <div class="button-bar">
             <button class="button button-positive icon" ng-class="{'active ion-ios-list':data_mode==1, 'ion-ios-list-outline':data_mode==2}" ng-click="setDataMode(1)"></button>
-            <button class="button button-positive icon" ng-class="{'active ion-ios-pie':data_mode==2, 'ion-ios-pie-outline':data_mode==1}" ng-click="setDataMode(2)"></button>
+            <button class="button button-positive icon" ng-show="selectedTiempos.length > 1" ng-class="{'active ion-ios-pie':data_mode==2, 'ion-ios-pie-outline':data_mode==1}" ng-click="setDataMode(2)"></button>
         </div>
         <div id="raw-data" ng-show="isDataMode(1)">
             <ion-list class="list list-inset" ng-repeat="lugar in selectedLugares">
@@ -27,8 +27,9 @@
             <ion-list class="list list-inset">
                 <ion-item class="item item-divider"><b>Islas</b></ion-item>
                 <div class="list card">
-                    <ion-item class="item item-divider">Leyenda</ion-item>
-                    <a class="item item-icon-left" ng-repeat="lugar in selectedLugares">
+                    <ion-item class="item item-divider" ng-show="!leyendaShown" ng-click="switchLeyenda()">Mostrar leyenda</ion-item>
+                    <ion-item class="item item-divider" ng-show="leyendaShown" ng-click="switchLeyenda()">Ocultar leyenda</ion-item>
+                    <a class="item item-icon-left" ng-repeat="lugar in selectedLugares" ng-show="leyendaShown">
                         <i class="icon ion-arrow-graph-up-right" ng-style="{ color: islands_colors[$index] }"></i>
                         {{lugar.title}}
                     </a>

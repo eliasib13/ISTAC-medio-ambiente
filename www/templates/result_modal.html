@@ -27,8 +27,8 @@
             <ion-list class="list list-inset">
                 <ion-item class="item item-divider"><b>Islas</b></ion-item>
                 <div class="list card">
-                    <ion-item class="item item-divider" ng-show="!leyendaShown" ng-click="switchLeyenda()">Mostrar leyenda</ion-item>
-                    <ion-item class="item item-divider" ng-show="leyendaShown" ng-click="switchLeyenda()">Ocultar leyenda</ion-item>
+                    <ion-item class="item item-divider item-icon-left" ng-show="!leyendaShown" ng-click="switchLeyenda()"><i class="icon ion-plus"/><b>Mostrar leyenda</b></ion-item>
+                    <ion-item class="item item-divider item-icon-left" ng-show="leyendaShown" ng-click="switchLeyenda()"><i class="icon ion-minus"/><b>Ocultar leyenda</b></ion-item>
                     <a class="item item-icon-left" ng-repeat="lugar in selectedLugares" ng-show="leyendaShown">
                         <i class="icon ion-arrow-graph-up-right" ng-style="{ color: islands_colors[$index] }"></i>
                         {{lugar.title}}

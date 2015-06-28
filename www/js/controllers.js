@@ -45,6 +45,11 @@ angular.module('starter.controllers', [])
                         errorLoadingMarkers,
                         'Error',
                         'Aceptar');
+                } else if (textStatus == "error") {
+                    navigator.notification.alert('Error en el servidor de datos. Intente acceder más tarde. Saliendo de la aplicación...',
+                        errorLoadingMarkers,
+                        'Error',
+                        'Aceptar');
                 }
             }
         });
@@ -60,6 +65,11 @@ angular.module('starter.controllers', [])
             error: function (jqXHR, textStatus) {
                 if(textStatus === "timeout") {
                     navigator.notification.alert('La conexión con la fuente de datos ha expirado. Saliendo de la aplicación...',
+                        errorLoadingMarkers,
+                        'Error',
+                        'Aceptar');
+                } else if (textStatus == "error") {
+                    navigator.notification.alert('Error en el servidor de datos. Intente acceder más tarde. Saliendo de la aplicación...',
                         errorLoadingMarkers,
                         'Error',
                         'Aceptar');
@@ -99,6 +109,11 @@ angular.module('starter.controllers', [])
                 error: function (jqXHR, textStatus){
                     if(textStatus === "timeout") {
                         navigator.notification.alert('La conexión con la fuente de datos ha expirado. Saliendo de la aplicación...',
+                            errorLoadingMarkers,
+                            'Error',
+                            'Aceptar');
+                    } else if (textStatus == "error") {
+                        navigator.notification.alert('Error en el servidor de datos. Intente acceder más tarde. Saliendo de la aplicación...',
                             errorLoadingMarkers,
                             'Error',
                             'Aceptar');
@@ -146,6 +161,11 @@ angular.module('starter.controllers', [])
                 error: function (jqXHR, textStatus){
                     if(textStatus === "timeout") {
                         navigator.notification.alert('La conexión con la fuente de datos ha expirado. Saliendo de la aplicación...',
+                            errorLoadingMarkers,
+                            'Error',
+                            'Aceptar');
+                    } else if (textStatus == "error") {
+                        navigator.notification.alert('Error en el servidor de datos. Intente acceder más tarde. Saliendo de la aplicación...',
                             errorLoadingMarkers,
                             'Error',
                             'Aceptar');
@@ -218,6 +238,11 @@ angular.module('starter.controllers', [])
                         if (textStatus == "timeout") {
                             navigator.notification.alert('La conexión con la fuente de datos ha expirado. Inténtelo de nuevo.',
                                 errorDimensionsTimeout,
+                                'Error',
+                                'Aceptar');
+                        } else if (textStatus == "error") {
+                            navigator.notification.alert('Error en el servidor de datos. Intente acceder más tarde. Saliendo de la aplicación...',
+                                errorLoadingMarkers,
                                 'Error',
                                 'Aceptar');
                         }
@@ -555,6 +580,11 @@ angular.module('starter.controllers', [])
                                 errorDataTimeout,
                                 'Error',
                                 'Aceptar');
+                        } else if (textStatus == "error") {
+                            navigator.notification.alert('Error en el servidor de datos. Intente acceder más tarde. Saliendo de la aplicación...',
+                                errorLoadingMarkers,
+                                'Error',
+                                'Aceptar');
                         }
                     }
                 });
@@ -627,6 +657,11 @@ angular.module('starter.controllers', [])
                             if (textStatus == "timeout") {
                                 navigator.notification.alert('La conexión con la fuente de datos ha expirado. Inténtelo de nuevo.',
                                     errorDataTimeout,
+                                    'Error',
+                                    'Aceptar');
+                            } else if (textStatus == "error") {
+                                navigator.notification.alert('Error en el servidor de datos. Intente acceder más tarde. Saliendo de la aplicación...',
+                                    errorLoadingMarkers,
                                     'Error',
                                     'Aceptar');
                             }

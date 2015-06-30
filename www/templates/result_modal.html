@@ -14,7 +14,7 @@
                 <div class="card" ng-repeat="tiempo in selectedTiempos">
                     <ion-item class="item item-divider">{{tiempo.title}}</ion-item>
                 <span class="dato">
-                    <span class="cursiva">Dato ({{medida_unit}}): </span>{{result_consulta.observation[getDatoIndex(lugar.code,tiempo.code)]}}<br>
+                    <span class="cursiva">Dato<span ng-show="medida_unit != undefined"> ({{medida_unit}})</span>: </span>{{result_consulta.observation[getDatoIndex(lugar.code,tiempo.code)]}}<br>
                     <span style="padding-left: 4px;" class="cursiva" ng-show="indicadorActual.compare == 'percent'">Con respecto al total de Canarias: {{
                         ((result_consulta.observation[getDatoIndex(lugar.code,tiempo.code)] / result_consulta.observation[getDatoIndex(canaryCode,tiempo.code)]) * 100).toFixed(2)
                         }}%</span>

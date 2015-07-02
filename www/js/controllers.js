@@ -187,6 +187,17 @@ angular.module('starter.controllers', [])
         $scope.lugares = [];
         $scope.tiempos = [];
 
+        $scope.islandsShown = false;
+        $scope.yearsShown = false;
+
+        $scope.switchIslandsShown =  function() {
+            $scope.islandsShown = !$scope.islandsShown;
+        };
+
+        $scope.switchYearsShown =  function() {
+            $scope.yearsShown = !$scope.yearsShown;
+        }
+
         function errorDimensionsTimeout() {
             $ionicLoading.hide();
             navigator.app.backHistory();

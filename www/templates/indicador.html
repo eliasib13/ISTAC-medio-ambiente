@@ -2,12 +2,12 @@
     <ion-content id="categoria-content">
         <button id="consultar" class="button button-block button-positive">Realizar consulta</button>
         <ion-list class="list list-inset">
-            <ion-item class="item item-divider"><b>Islas</b></ion-item>
-            <ion-toggle ng-repeat="lugar in lugares" ng-model="lugar.isSelected" toggle-class="toggle-positive">{{lugar.title}}</ion-toggle>
+            <ion-item class="item item-divider item-icon-left" ng-click="switchIslandsShown()"><i ng-class="{'icon ion-plus':!islandsShown,'icon ion-minus':islandsShown}"></i><b>Islas</b></ion-item>
+            <ion-toggle ng-repeat="lugar in lugares" ng-model="lugar.isSelected" toggle-class="toggle-positive" ng-show="islandsShown">{{lugar.title}}</ion-toggle>
         </ion-list>
         <ion-list class="list list-inset">
-            <ion-item class="item item-divider"><b>Años</b></ion-item>
-            <ion-toggle ng-repeat="tiempo in tiempos" ng-model="tiempo.isSelected" toggle-class="toggle-positive">{{tiempo.title}}</ion-toggle>
+            <ion-item class="item item-divider item-icon-left" ng-click="switchYearsShown()"><i ng-class="{'icon ion-plus':!yearsShown,'icon ion-minus':yearsShown}"></i><b>Años</b></ion-item>
+            <ion-toggle ng-repeat="tiempo in tiempos" ng-model="tiempo.isSelected" toggle-class="toggle-positive" ng-show="yearsShown">{{tiempo.title}}</ion-toggle>
         </ion-list>
     </ion-content>
 </ion-view>

@@ -211,7 +211,7 @@ angular.module('starter.controllers', [])
                                     code: $scope.datos_consulta.dimension.GEOGRAPHICAL.representation[i].code,
                                     title: $scope.datos_consulta.dimension.GEOGRAPHICAL.representation[i].title.es,
                                     granularityCode: $scope.datos_consulta.dimension.GEOGRAPHICAL.representation[i].granularityCode,
-                                    isSelected: false
+                                    isSelected: true
                                 });
                         }
 
@@ -222,7 +222,7 @@ angular.module('starter.controllers', [])
                                     code: $scope.datos_consulta.dimension.TIME.representation[i].code,
                                     title: $scope.datos_consulta.dimension.TIME.representation[i].title.es,
                                     granularityCode: $scope.datos_consulta.dimension.TIME.representation[i].granularityCode,
-                                    isSelected: false
+                                    isSelected: true
                                 });
                         }
 
@@ -296,7 +296,7 @@ angular.module('starter.controllers', [])
                                             code: data.dimension.GEOGRAPHICAL.representation[i].code,
                                             title: data.dimension.GEOGRAPHICAL.representation[i].title.es,
                                             granularityCode: data.dimension.GEOGRAPHICAL.representation[i].granularityCode,
-                                            isSelected: false
+                                            isSelected: true
                                         });
                                     }
                                 }
@@ -314,7 +314,7 @@ angular.module('starter.controllers', [])
                                 }
 
                                 for (var i = 0; i < $scope.common_years[0].length; i++)
-                                    $scope.tiempos.push({id: i, code: $scope.common_years[0][i], title: $scope.common_years[0][i], isSelected: false});
+                                    $scope.tiempos.push({id: i, code: $scope.common_years[0][i], title: $scope.common_years[0][i], isSelected: true});
 
                                 $ionicLoading.hide();
                             }

@@ -1,5 +1,6 @@
 <ion-view view-title="{{indicadorTitle}}">
     <ion-content id="categoria-content">
+        <button id="consultar" class="button button-block button-positive">Realizar consulta</button>
         <ion-list class="list list-inset">
             <ion-item class="item item-divider"><b>Islas</b></ion-item>
             <ion-toggle ng-repeat="lugar in lugares" ng-model="lugar.isSelected" toggle-class="toggle-positive">{{lugar.title}}</ion-toggle>
@@ -8,6 +9,5 @@
             <ion-item class="item item-divider"><b>Años</b></ion-item>
             <ion-toggle ng-repeat="tiempo in tiempos" ng-model="tiempo.isSelected" toggle-class="toggle-positive">{{tiempo.title}}</ion-toggle>
         </ion-list>
-        <button id="consultar" class="button button-block button-positive">Realizar consulta</button>
     </ion-content>
 </ion-view>

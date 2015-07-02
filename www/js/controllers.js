@@ -494,7 +494,7 @@ angular.module('starter.controllers', [])
                 .attr('fill', 'none');
         }
 
-        $scope.data_mode = 1;
+        $scope.data_mode = 2;
 
         $scope.setDataMode = function (mode) {
             $scope.data_mode = mode;
@@ -567,6 +567,8 @@ angular.module('starter.controllers', [])
                     timeout: 15000,
                     success: function (data) {
                         $scope.result_consulta = data;
+
+                        if ($scope.selectedTiempos.length == 1) $scope.data_mode = 1;
 
                         $scope.openModal();
 
@@ -688,6 +690,8 @@ angular.module('starter.controllers', [])
 
                             $scope.result_consulta.observation.push(calc_function(pars).toFixed(2));
                         }
+
+                        if ($scope.selectedTiempos.length == 1) $scope.data_mode = 1;
 
                         $scope.openModal();
 

@@ -1,14 +1,14 @@
 angular.module('starter.controllers', [])
 
     .controller('AppCtrl', function($ionicPlatform, $ionicLoading, $scope, $state) {
-        $scope.loadingTemplate = '<ion-spinner icon="lines"></ion-spinner>';
+        $scope.loadingTemplate = '<ion-spinner icon="lines"></ion-spinner>';  // Carga del icono de 'Loading'
 
-        function exitApp(index) {
+        function exitApp(index) { // Función para cerrar la app
             if (index == 1)
                 navigator.app.exitApp();
         }
 
-        $ionicPlatform.registerBackButtonAction(function () {
+        $ionicPlatform.registerBackButtonAction(function () { // Control de las funciones del botón atrás (Android)
             if($state.current.name=="app.home" || $state.current.name=="app.about")
             {
                 navigator.notification.confirm(
@@ -19,25 +19,25 @@ angular.module('starter.controllers', [])
                 );
             }
             else {
-                navigator.app.backHistory();
+                navigator.app.backHistory(); // Volver a la vista anterior
             }
         }, 100);
 
-        function errorLoadingMarkers() {
+        function errorLoadingMarkers() { // Error callback si no se reciben los indicadores
             $ionicLoading.hide();
             navigator.app.exitApp();
         }
 
-        $ionicLoading.show({
+        $ionicLoading.show({ // Mostrar loading
             template: $scope.loadingTemplate
         });
         $.ajax({
             type: "GET",
-            url: "http://banot.etsii.ull.es/alu4396/VIStac-IMAS-Can/indicadores.json",
+            url: "http://banot.etsii.ull.es/alu4396/VIStac-IMAS-Can/indicadores.json", // Lista de indicadores permitidos desde banot
             dataType: "json",
             timeout: 10000,
             success: function(data) {
-                $scope.indicadoresPermitidos = data;
+                $scope.indicadoresPermitidos = data; // Se almacenan los indicadores permitidos
             },
             error: function (jqXHR, textStatus) {
                 if(textStatus === "timeout") {
@@ -56,11 +56,11 @@ angular.module('starter.controllers', [])
 
         $.ajax({
             type: "GET",
-            url: "http://banot.etsii.ull.es/alu4396/VIStac-IMAS-Can/derivados.json",
+            url: "http://banot.etsii.ull.es/alu4396/VIStac-IMAS-Can/derivados.json", // Lista de indicadores derivados desde banot
             dataType: "json",
             timeout: 10000,
             success: function(data) {
-                $scope.indicadoresDerivados = data;
+                $scope.indicadoresDerivados = data; // Se almacenan los indicadores derivados
             },
             error: function (jqXHR, textStatus) {
                 if(textStatus === "timeout") {
@@ -79,16 +79,14 @@ angular.module('starter.controllers', [])
 
         $scope.categorias = [];
         $scope.indicadores = [];
-        /*$scope.lista_derivados = [];
-        $scope.indicadores_cat_actual = {};*/
     })
 
     .controller('HomeCtrl', function($scope, $ionicLoading) {
-        $ionicLoading.show({
+        $ionicLoading.show({ // Se muestra el 'Loading'
             template: $scope.loadingTemplate
         });
 
-        function errorLoadingMarkers() {
+        function errorLoadingMarkers() { // Error callback si no se reciben los datos
             $ionicLoading.hide();
             navigator.app.exitApp();
         }
@@ -96,7 +94,7 @@ angular.module('starter.controllers', [])
         $scope.$on('$ionicView.loaded', function() {
             $.ajax({
                 type: "GET",
-                url: "http://www.gobiernodecanarias.org/istac/indicators/api/indicators/v1.0/subjects?api_key=special-key",
+                url: "http://www.gobiernodecanarias.org/istac/api/indicators/api/indicators/v1.0/subjects?api_key=special-key",
                 dataType: "jsonp",
                 jsonp: "_callback",
                 timeout: 10000,
@@ -124,16 +122,18 @@ angular.module('starter.controllers', [])
     })
 
     .controller('CategoriaCtrl', function($stateParams, $scope, $ionicLoading) {
-        $ionicLoading.show({
+        $ionicLoading.show({ // Se muestra el 'Loading'
             template: $scope.loadingTemplate
         });
 
+        // Se extrae el código de la categoría seleccionada
         $scope.categoria = $.grep($scope.categorias, function(cat){ return cat.code === $stateParams['categoriaId']; })[0];
 
+        // Se obtienen los indicadores de la categoría seleccionada
         $scope.$on('$ionicView.afterEnter', function() {
             $.ajax({
                 type: "GET",
-                url: "http://www.gobiernodecanarias.org/istac/indicators/api/indicators/v1.0/indicators?q=subjectCode+EQ+\"" + $scope.categoria.code + "\"&api_key=special-key",
+                url: "http://www.gobiernodecanarias.org/istac/api/indicators/api/indicators/v1.0/indicators?q=subjectCode+EQ+\"" + $scope.categoria.code + "\"&api_key=special-key",
                 dataType: "jsonp",
                 jsonp: "_callback",
                 timeout: 10000,
@@ -176,9 +176,9 @@ angular.module('starter.controllers', [])
     })
 
     .controller('IndicadorCtrl', function($stateParams, $scope, $ionicLoading, $ionicModal) {
-        $scope.categoriaCode = $stateParams['categoriaId'];
-        $scope.indicadorCode = $stateParams['indicadorId'].toUpperCase();
-        $ionicLoading.show({
+        $scope.categoriaCode = $stateParams['categoriaId']; // Código de la categoría actual
+        $scope.indicadorCode = $stateParams['indicadorId'].toUpperCase(); // Código del indicador actual
+        $ionicLoading.show({ // Se muestra el 'Loading'
             template: $scope.loadingTemplate
         });
 
@@ -207,7 +207,7 @@ angular.module('starter.controllers', [])
             if (!$scope.indicadoresDerivados[$scope.categoriaCode] || !$scope.indicadoresDerivados[$scope.categoriaCode][$scope.indicadorCode]) { // Si es un indicador básico...
                 $.ajax({
                     type: "GET",
-                    url: "http://www.gobiernodecanarias.org/istac/indicators/api/indicators/v1.0/indicators/" + $scope.indicadorCode + "?api_key=special-key",
+                    url: "http://www.gobiernodecanarias.org/istac/api/indicators/api/indicators/v1.0/indicators/" + $scope.indicadorCode + "?api_key=special-key",
                     dataType: "jsonp",
                     jsonp: "_callback",
                     timeout: 10000,
@@ -270,7 +270,7 @@ angular.module('starter.controllers', [])
                 $.each($scope.indicadoresDerivados[$scope.categoriaCode][$scope.indicadorCode].indicators, function(index, indicator_code){
                     $.ajax({
                         type: "GET",
-                        url: "http://www.gobiernodecanarias.org/istac/indicators/api/indicators/v1.0/indicators/" + indicator_code + "?api_key=special-key",
+                        url: "http://www.gobiernodecanarias.org/istac/api/indicators/api/indicators/v1.0/indicators/" + indicator_code + "?api_key=special-key",
                         dataType: "jsonp",
                         jsonp: "_callback",
                         timeout: 10000,
@@ -295,7 +295,7 @@ angular.module('starter.controllers', [])
 
                         $.ajax({
                             type: "GET",
-                            url: "http://www.gobiernodecanarias.org/istac/indicators/api/indicators/v1.0/indicators/" + $scope.indicadoresDerivados[$scope.categoriaCode][$scope.indicadorCode].indicators[0] + "?api_key=special-key",
+                            url: "http://www.gobiernodecanarias.org/istac/api/indicators/api/indicators/v1.0/indicators/" + $scope.indicadoresDerivados[$scope.categoriaCode][$scope.indicadorCode].indicators[0] + "?api_key=special-key",
                             dataType: "jsonp",
                             jsonp: "_callback",
                             timeout: 10000,
@@ -530,7 +530,7 @@ angular.module('starter.controllers', [])
             $scope.selectedLugares = [];
             $scope.selectedTiempos = [];
 
-            var base_url = 'http://www.gobiernodecanarias.org/istac/indicators/api/indicators/v1.0/indicators/' + $stateParams['indicadorId'].toUpperCase() + '/data?';
+            var base_url = 'http://www.gobiernodecanarias.org/istac/api/indicators/api/indicators/v1.0/indicators/' + $stateParams['indicadorId'].toUpperCase() + '/data?';
             var representation = 'representation=';
             var granularity = 'granularity=';
             var geographical = 'GEOGRAPHICAL';
@@ -610,7 +610,7 @@ angular.module('starter.controllers', [])
                     data_indicators_retrieved.push(false);
 
                 $.each(indicators, function(x, item_indicator) {
-                    base_url = 'http://www.gobiernodecanarias.org/istac/indicators/api/indicators/v1.0/indicators/' + indicators[x] + '/data?';
+                    base_url = 'http://www.gobiernodecanarias.org/istac/api/indicators/api/indicators/v1.0/indicators/' + indicators[x] + '/data?';
 
                     url_consulta = base_url + representation + geographical + '[' + $scope.canaryCode + '|';
 

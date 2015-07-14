@@ -1,17 +1,17 @@
 <ion-view view-title="{{indicadorTitle}}">
     <ion-content id="categoria-content">
-        <button id="consultar" class="button button-block button-positive" ng-disabled="tiempos.length == 0">Realizar consulta</button>
+        <button id="consultar" class="button button-block button-positive" ng-disabled="tiempos.length == 0 || islandsSelected == 0 || yearsSelected == 0">Realizar consulta</button>
         <ion-list class="list list-inset">
             <ion-item class="item item-divider item-icon-left" ng-click="switchIslandsShown()"><i ng-class="{'icon ion-plus':!islandsShown,'icon ion-minus':islandsShown}"></i><b>Islas</b></ion-item>
             <ion-item class="item item-divider item-icon-right" ng-click="selectAllIslands()" ng-show="islandsShown"><span class="cursiva">Seleccionar todos</span><i class="icon ion-toggle-filled"></i></ion-item>
             <ion-item class="item item-divider item-icon-right" ng-click="deselectAllIslands()" ng-show="islandsShown"><span class="cursiva">Deseleccionar todos</span><i class="icon ion-toggle"></i></ion-item>
-            <ion-toggle ng-repeat="lugar in lugares" ng-model="lugar.isSelected" toggle-class="toggle-positive" ng-show="islandsShown">{{lugar.title}}</ion-toggle>
+            <ion-toggle ng-repeat="lugar in lugares" ng-model="lugar.isSelected" toggle-class="toggle-positive" ng-show="islandsShown" ng-click="registerIslandToggle(lugar.isSelected)">{{lugar.title}}</ion-toggle>
         </ion-list>
         <ion-list class="list list-inset">
             <ion-item class="item item-divider item-icon-left" ng-click="switchYearsShown()"><i ng-class="{'icon ion-plus':!yearsShown,'icon ion-minus':yearsShown}"></i><b>Años</b></ion-item>
             <ion-item class="item item-divider item-icon-right" ng-click="selectAllYears()" ng-show="yearsShown"><span class="cursiva">Seleccionar todos</span><i class="icon ion-toggle-filled"></i></ion-item>
             <ion-item class="item item-divider item-icon-right" ng-click="deselectAllYears()" ng-show="yearsShown"><span class="cursiva">Deseleccionar todos</span><i class="icon ion-toggle"></i></ion-item>
-            <ion-toggle ng-repeat="tiempo in tiempos" ng-model="tiempo.isSelected" toggle-class="toggle-positive" ng-show="yearsShown">{{tiempo.title}}</ion-toggle>
+            <ion-toggle ng-repeat="tiempo in tiempos" ng-model="tiempo.isSelected" toggle-class="toggle-positive" ng-show="yearsShown" ng-click="registerYearToggle(tiempo.isSelected)">{{tiempo.title}}</ion-toggle>
             <div class="card" style="text-align: center; padding: 7px;" ng-show="tiempos.length == 0 && yearsShown">No hay valores temporales disponibles.</div>
         </ion-list>
     </ion-content>

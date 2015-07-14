@@ -242,6 +242,9 @@ angular.module('starter.controllers', [])
                                 $scope.medida_unit = $scope.datos_consulta.dimension.MEASURE.representation[i].quantity.unit.es;
                         }
 
+                        $scope.islandsSelected = $scope.lugares.length;
+                        $scope.yearsSelected = $scope.tiempos.length;
+
 
                         $ionicLoading.hide();
                     },
@@ -338,21 +341,39 @@ angular.module('starter.controllers', [])
         $scope.selectAllIslands = function() {
             for (var i = 0; i < $scope.lugares.length; i++)
                 $scope.lugares[i].isSelected = true;
+            $scope.islandsSelected = $scope.lugares.length;
         };
 
         $scope.selectAllYears = function() {
             for (var i = 0; i < $scope.tiempos.length; i++)
                 $scope.tiempos[i].isSelected = true;
+            $scope.yearsSelected = $scope.tiempos.length;
         };
 
         $scope.deselectAllIslands = function() {
             for (var i = 0; i < $scope.lugares.length; i++)
                 $scope.lugares[i].isSelected = false;
+            $scope.islandsSelected = 0;
         };
 
         $scope.deselectAllYears = function() {
             for (var i = 0; i < $scope.tiempos.length; i++)
                 $scope.tiempos[i].isSelected = false;
+            $scope.yearsSelected = 0;
+        };
+
+        $scope.registerIslandToggle = function(isSelected) {
+            if(isSelected)
+                $scope.islandsSelected++;
+            else
+                $scope.islandsSelected--;
+        };
+
+        $scope.registerYearToggle = function(isSelected) {
+            if(isSelected)
+                $scope.yearsSelected++;
+            else
+                $scope.yearsSelected--;
         };
 
         $ionicModal.fromTemplateUrl('templates/result_modal.html', {
@@ -568,11 +589,11 @@ angular.module('starter.controllers', [])
                     }
                 }
 
-                if ($scope.selectedLugares.length == 0) {
+                /*if ($scope.selectedLugares.length == 0) {
                     $scope.selectedLugares = $scope.lugares;
                     for (var i = 0; i < $scope.selectedLugares.length; i++)
                         url_consulta += $scope.selectedLugares[i].code + '|';
-                }
+                }*/
 
                 url_consulta += ']:' + time + '[';
 
@@ -583,8 +604,8 @@ angular.module('starter.controllers', [])
                     }
                 }
 
-                if ($scope.selectedTiempos.length == 0)
-                    $scope.selectedTiempos = $scope.tiempos;
+                /*if ($scope.selectedTiempos.length == 0)
+                    $scope.selectedTiempos = $scope.tiempos;*/
 
                 url_consulta += ']:' + measure + '[ABSOLUTE]';
                 url_consulta += ']&' + granularity + geographical + '[REGIONS|ISLANDS]';

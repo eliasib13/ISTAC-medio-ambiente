@@ -335,6 +335,26 @@ angular.module('starter.controllers', [])
             }
         });
 
+        $scope.selectAllIslands = function() {
+            for (var i = 0; i < $scope.lugares.length; i++)
+                $scope.lugares[i].isSelected = true;
+        };
+
+        $scope.selectAllYears = function() {
+            for (var i = 0; i < $scope.tiempos.length; i++)
+                $scope.tiempos[i].isSelected = true;
+        };
+
+        $scope.deselectAllIslands = function() {
+            for (var i = 0; i < $scope.lugares.length; i++)
+                $scope.lugares[i].isSelected = false;
+        };
+
+        $scope.deselectAllYears = function() {
+            for (var i = 0; i < $scope.tiempos.length; i++)
+                $scope.tiempos[i].isSelected = false;
+        };
+
         $ionicModal.fromTemplateUrl('templates/result_modal.html', {
             scope: $scope,
             animation: 'slide-in-up'

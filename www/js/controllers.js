@@ -99,6 +99,7 @@ angular.module('starter.controllers', [])
                 jsonp: "_callback",
                 timeout: 10000,
                 success: function(data) {
+                    data = data.items;
                     for (var i = 0; i < data.length; i++)
                         $scope.categorias.push({id: i, code: data[i].code, title: data[i].title.es.substr(4)});
 

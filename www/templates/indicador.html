@@ -1,5 +1,5 @@
 <ion-view view-title="{{indicadorTitle}}">
-    <ion-content id="categoria-content">
+    <ion-content id="categoria-content" overflow-scroll="true">
         <button id="consultar" class="button button-block button-positive" ng-disabled="tiempos.length == 0 || islandsSelected == 0 || yearsSelected == 0">Realizar consulta</button>
         <ion-list class="list list-inset">
             <ion-item class="item item-divider item-icon-left" ng-click="switchIslandsShown()"><i ng-class="{'icon ion-plus':!islandsShown,'icon ion-minus':islandsShown}"></i><b>Islas</b></ion-item>

@@ -6,7 +6,11 @@
     "config_munge": {
         "files": {}
     },
-    "installed_plugins": {},
+    "installed_plugins": {
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.ionicframework.vistacimascan918472"
+        }
+    },
     "dependent_plugins": {
         "com.ionic.keyboard": {
             "PACKAGE_NAME": "com.ionicframework.vistacimascan918472"

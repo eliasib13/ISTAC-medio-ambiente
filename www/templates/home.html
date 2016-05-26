@@ -1,5 +1,5 @@
 <ion-view view-title="Categorías">
-  <ion-content>
+  <ion-content overflow-scroll="true">
     <ion-list>
       <ion-item ng-repeat="categoria in categorias | orderBy:'code'" href="#/app/home/{{categoria.code}}">
         {{categoria.title}}

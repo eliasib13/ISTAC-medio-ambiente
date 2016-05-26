@@ -1,5 +1,5 @@
 <ion-view view-title={{categoria.title}}>
-  <ion-content>
+  <ion-content overflow-scroll="true">
     <ion-list>
       <ion-item ng-repeat="indicador in indicadores" href="#/app/home/{{categoria.code}}/{{indicador.code}}">
         {{indicador.title}}

@@ -4,5 +4,6 @@
     <file url="file://$PROJECT_DIR$/.gitignore" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/www/js/app.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/www/templates/indicador.html" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>
